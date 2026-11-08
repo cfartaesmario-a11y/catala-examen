@@ -305,28 +305,6 @@ El gos va mossegar [el carter].|CD|CI|S|CRV|El va mossegar: CD.
 Penso [en les vacances] tot el dia.|CRV|CC|CD|CI|«Pensar en»: CRV, se substitueix per «hi».
 Els meus avis viuen [a Mataró].|CC|CRV|AT|CD|Indica lloc: CC de lloc (hi viuen).`;
 
-const SUB = `No vindré a l'excursió [perquè estic malalt].|Adverbial causal|Adverbial final|Adverbial consecutiva|Substantiva|«Perquè» + indicatiu = causa.
-T'ho explico [perquè ho entenguis].|Adverbial final|Adverbial causal|Substantiva|Adverbial condicional|«Perquè» + subjuntiu = finalitat.
-[Si plou], no sortirem.|Adverbial condicional|Adverbial temporal|Adverbial concessiva|Substantiva|
-[Encara que plogui], sortirem.|Adverbial concessiva|Adverbial condicional|Adverbial causal|Adverbial temporal|Expressa una objecció que no impedeix l'acció.
-[Quan arribis], truca'm.|Adverbial temporal|Adverbial condicional|Adjectiva especificativa|Adverbial final|
-El noi [que viu al tercer] toca el piano.|Adjectiva especificativa|Adjectiva explicativa|Substantiva|Adverbial causal|Sense comes: restringeix de quin noi parlem.
-Va córrer tant [que es va marejar].|Adverbial consecutiva|Adverbial causal|Adjectiva especificativa|Substantiva|«Tant... que» = conseqüència.
-Vull [que m'ajudis].|Substantiva|Adjectiva especificativa|Adverbial final|Adverbial causal|Fa de CD: ho vull.
-La Rosa, [que és metgessa], ens va atendre.|Adjectiva explicativa|Adjectiva especificativa|Substantiva|Adverbial causal|Entre comes: afegeix informació.
-Va estudiar més [del que pensàvem].|Adverbial comparativa|Adverbial consecutiva|Substantiva|Adjectiva especificativa|
-[Tot i que estava cansada], va acabar la feina.|Adverbial concessiva|Adverbial causal|Adverbial temporal|Adverbial condicional|
-Em pregunto [si vindrà].|Substantiva|Adverbial condicional|Adverbial temporal|Adjectiva especificativa|Interrogativa indirecta que fa de CD.
-[Com que no tenia diners], no va comprar res.|Adverbial causal|Adverbial comparativa|Adverbial concessiva|Adverbial condicional|«Com que» introdueix causa.
-[Abans que s'acabi el curs], farem una excursió.|Adverbial temporal|Adverbial final|Adverbial condicional|Substantiva|
-Tinc moltes ganes [de veure't].|Substantiva|Adverbial final|Adjectiva especificativa|Adverbial causal|Substantiva d'infinitiu que complementa el nom «ganes».
-[Mentre cuinava], escoltava la ràdio.|Adverbial temporal|Adverbial concessiva|Adverbial causal|Adjectiva explicativa|Simultaneïtat.
-Faré el que vulguis, [amb tal que callis].|Adverbial condicional|Adverbial final|Adverbial concessiva|Adverbial causal|«Amb tal que» = condició.
-Estic segura [que aprovaràs].|Substantiva|Adverbial causal|Adverbial consecutiva|Adjectiva especificativa|Complementa l'adjectiu «segura». Fixa't en la caiguda de la preposició: no «de que».
-El poble [on vaig néixer] és a l'Empordà.|Adjectiva especificativa|Adjectiva explicativa|Substantiva|Adverbial causal|«On» és un relatiu que té com a antecedent «el poble».
-[Per molt que insisteixis], no hi aniré.|Adverbial concessiva|Adverbial condicional|Adverbial causal|Adverbial comparativa|
-Està tan cansat [que no pot ni parlar].|Adverbial consecutiva|Adverbial causal|Adverbial comparativa|Substantiva|«Tan... que» = conseqüència.`;
-
 const PRON = `Vaig donar [el llibre] [a la Maria].|L'hi vaig donar.|Li'l vaig donar.|Se'l vaig donar.|La hi vaig donar.|el (CD) + li (CI) = l'hi.
 Porta [les maletes] [a l'habitació].|Porta-les-hi.|Porta-li-les.|Porta'ls-hi.|Porta-les-ne.|les (CD) + hi (lloc).
 Hem comprat [tres pomes].|N'hem comprat tres.|Les hem comprat tres.|Hi hem comprat tres.|Ho hem comprat tres.|CD indeterminat amb quantitat: «en».
@@ -411,7 +389,99 @@ Abans jo {} (ser, imperfet d'indicatiu) més tímid.@era
 Quan era petit, jo {} (veure, imperfet d'indicatiu) dibuixos cada dia.@veia
 Abans nosaltres {} (dir, imperfet d'indicatiu) sempre la veritat.@dèiem`;
 
-const DOB = [["pesar","pensar"],["cosa","causa"],["estret","estricte"],["dret","directe"],["lleial","legal"],["reial","regal"],["dit","dígit"],["cadira","càtedra"],["muscle","múscul"],["cabdal","capital"],["ample","ampli"],["plaça","platea"],["paraula","paràbola"],["recobrar","recuperar"],["sobrar","superar"],["senya","signe"],["porxo","pòrtic"],["rodó","rotund"],["pobre","pàuper"],["teula","tègula"],["delme","dècim"],["obra","òpera"],["reixa","regla"],["sencer","sincer"],["farga","fàbrica"],["moble","mòbil"],["eixam","examen"],["comptar","computar"],["raó","ració"],["senyor","sènior"],["vetlla","vigília"],["doblegar","duplicar"],["blasmar","blasfemar"],["espatlla","espàtula"],["fred","frígid"],["llaurar","laborar"],["orella","aurícula"],["tebi","tèbid"]];
+const DOB = `No he vingut a classe [___] estava malalt.|perquè|per què|per a què#Causa: conjunció «perquè», junt i amb accent.
+[___] no vas venir ahir?|Per què|Perquè|Per a què#Pregunta per la causa: «per què», separat.
+T'ho dic [___] ho sàpigues.|perquè|per què|per a què#Finalitat amb subjuntiu: «perquè».
+[___] serveix aquest aparell?|Per a què|Per què|Perquè#Pregunta per la finalitat: «per a què».
+No entenc [___] s'ha enfadat tant.|per què|perquè|per a què#Interrogativa indirecta de causa: «per què».
+Ningú no sap la raó [___] va dimitir.|per què|perquè|per a què#Preposició «per» + relatiu «què» (= per la qual).
+Estudia molt [___] vol ser metgessa.|perquè|per què|per a què#Causa: «perquè».
+Em va explicar el [___] de la seva decisió.|perquè|per què|per a què#Quan és un nom (el motiu), s'escriu junt: «el perquè».
+[___] ho fas, si saps que no servirà de res?|Per què|Perquè|Per a què#Pregunta per la causa.
+Ho guardo aquí [___] no es perdi.|perquè|per què|per a què#Finalitat amb subjuntiu.
+Aquests són els motius [___] l'han acomiadat.|per què|perquè|per a què#= pels quals: preposició + relatiu.
+«Per què no t'has presentat?» «[___] tenia febre.»|Perquè|Per què|Per a què#La resposta indica causa: «perquè».
+Li va trucar [___] li tornés el llibre.|perquè|per què|per a què#Finalitat.
+Digues-me [___] vols el martell: per penjar un quadre?|per a què|perquè|per què#Es pregunta la finalitat (per penjar...): «per a què».
+[___] estudies català? Per entendre millor la gent d'aquí.|Per a què|Perquè|Per què#La resposta és una finalitat.
+No és el meu germà, [___] el meu cosí.|sinó|si no#Després d'una negació, contraposa: «sinó».
+[___] estudies, no aprovaràs.|Si no|Sinó#Condicional + negació: «si no».
+No vull cafè, [___] te.|sinó|si no#Contraposició després de negació.
+Vine a les cinc; [___], no t'esperarem.|si no|sinó#«Si no» = en cas contrari.
+No fa [___] queixar-se tot el dia.|sinó|si no#«No fer sinó» = només fer.
+No només és intel·ligent, [___] també treballadora.|sinó|si no#«No només... sinó també».
+Què faràs [___] et donen la beca?|si no|sinó#Condicional.
+Truca'm [___] trobes el carrer.|si no|sinó#Condicional.
+No ho ha fet ell, [___] la seva germana.|sinó|si no#Contraposició.
+Pregunta-li si vol venir; [___], ja hi anirem sols.|si no|sinó#= en cas contrari.
+No t'ho diré [___] m'ho demanes bé.|si no|sinó#Condicional: si no m'ho demanes.
+No hi havia ningú [___] el vigilant.|sinó|si no#= excepte.
+Jo [___] vull anar al concert.|també|tan bé#Adverbi d'addició.
+Mai no havia cantat [___] com ahir.|tan bé|també#«Tan bé» = d'una manera tan bona.
+Ho has fet [___] que t'han felicitat.|tan bé|també#Intensitat: «tan bé».
+La Laia [___] ha aprovat.|també|tan bé#Addició.
+Jo no hi aniré, i ell [___].|tampoc|tan poc#Negació afegida: «tampoc».
+Menja [___] que s'ha aprimat molt.|tan poc|tampoc#«Tan poc» = una quantitat tan petita.
+Ha dormit [___] que no s'aguanta dret.|tan poc|tampoc#Quantitat.
+No m'agrada el futbol ni [___] el bàsquet.|tampoc|tan poc#Negació.
+Era [___] interessant que me'n vaig anar a la mitja part.|tan poc|tampoc#Intensitat davant d'adjectiu.
+[___] demà plourà.|Potser|Pot ser#«Potser» = adverbi (tal vegada).
+Això no [___] veritat.|pot ser|potser#Verb «poder» + verb «ser».
+[___] que tinguis raó.|Pot ser|Potser#«Pot ser que» = és possible que.
+[___] no m'has entès bé.|Potser|Pot ser#Adverbi.
+Aquest examen [___] més difícil del que penses.|pot ser|potser#Verb poder + ser.
+No trobo les claus [___].|enlloc|en lloc#«Enlloc» = en cap lloc.
+[___] de queixar-te, ajuda'ns.|En lloc|Enlloc#«En lloc de» = en comptes de.
+Hi va anar ell [___] de la seva germana.|en lloc|enlloc#= en comptes de.
+Aquest camí no porta [___].|enlloc|en lloc#= a cap lloc.
+M'agrada la fruita, [___] les maduixes.|sobretot|sobre tot#«Sobretot» = especialment.
+Parla [___] el que passa al barri: en sap de tot.|sobre tot|sobretot#Preposició «sobre» + «tot».
+[___], no t'oblidis les claus.|Sobretot|Sobre tot#= principalment.
+Va vessar l'aigua [___] el que hi havia a la taula.|sobre tot|sobretot#= damunt de tot.
+De [___] parles?|què|que#Després de preposició: «què» tònic.
+El llibre [___] llegeixo és molt bo.|que|què#Relatiu àton sense preposició.
+[___] vols per sopar?|Què|Que#Interrogatiu.
+No sé amb [___] l'has tallat.|què|que#Preposició + «què».
+Diu [___] vindrà demà.|que|què#Conjunció.
+L'eina amb [___] treballa és vella.|què|que#Relatiu després de preposició: «què» (o «la qual»).
+[___] bonic!|Que|Què#«Que» exclamatiu davant d'adjectiu no porta accent.
+[___] vindràs a veure'ns?|Quan|Quant#Temps: «quan».
+[___] costa aquest jersei?|Quant|Quan#Quantitat: «quant».
+[___] arribis, truca'm.|Quan|Quant#Temps.
+[___] a les notes, no et preocupis.|Quant|Quan#«Quant a» = pel que fa a.
+No sé [___] temps hi estarem.|quant|quan#Quantitat davant de nom.
+És [___] alt com el seu pare.|tan|tant#Davant d'adjectiu o adverbi: «tan».
+No mengis [___].|tant|tan#Sense adjectiu ni adverbi darrere: «tant».
+Per [___], hem de tornar-hi.|tant|tan#«Per tant» (conseqüència).
+Corre [___] de pressa que no l'atrapes.|tan|tant#Davant d'adverbi: «tan».
+Va plorar [___] que se li van inflar els ulls.|tant|tan#Modifica el verb: «tant».
+La Marta [___] arribat tard.|ha|a#Verb «haver».
+Anirem [___] Girona dissabte.|a|ha#Preposició.
+Encara no [___] trucat ningú.|ha|a#Verb «haver».
+Tinc ganes d'anar [___] la platja.|a|ha#Preposició.
+[___] ha molta gent a la plaça.|Hi|I#Pronom de «haver-hi».
+La Rosa [___] la Júlia són germanes.|i|hi#Conjunció.
+No [___] vaig poder anar.|hi|i#Pronom feble de lloc.
+Vols pa [___] oli?|i|hi#Conjunció.
+Vols te [___] cafè?|o|ho#Conjunció disjuntiva.
+No [___] sé.|ho|o#Pronom feble neutre.
+[___] has entès?|Ho|O#Pronom feble.
+Vine dilluns [___] dimarts.|o|ho#Conjunció.
+[___] si aquesta vegada ho encertes.|A veure|Haver#«A veure» = vejam.
+Hauríem d'[___] sortit abans.|haver|a veure#Verb auxiliar «haver».
+Anem [___] la pel·lícula nova.|a veure|haver#Preposició + verb veure.
+[___], vindré a la festa.|Sí|Si#Afirmació: «sí».
+[___] plou, no sortirem.|Si|Sí#Conjunció condicional.
+Li vaig preguntar si vindria i em va dir que [___].|sí|si#Afirmació.
+El [___] de maig és el més bonic.|mes|més#Nom (període de temps).
+Vull [___] pastís.|més|mes#Quantitat.
+Cada [___] cobra el sou.|mes|més#Nom.
+Has posat dues cadires [___]: som quatre.|de més|demés#«De més» = que sobren.
+Tu queda't aquí; els [___] vindran després.|demés|de més#«Els demés» = els altres.
+El sopar ja està [___].|a punt|apunt#«A punt» = preparat.
+Em deixes els [___] d'història?|apunts|a punts#«Apunt» és un nom: nota escrita.
+Va dir [___] i va marxar.|adéu|a Déu#Salutació de comiat.
+Resaven [___] cada nit.|a Déu|adéu#Preposició + nom propi.`;
 
 const DER = `Enyora la {} (sol) i el silenci del mas Roger.@solitud/soledat
 El retaule major de l'església de Santa Maria d'Igualada pertany a l'anomenat barroc {} (tard).@tardà
@@ -649,10 +719,9 @@ const SETS=[
  {id:"cult",g:"l",t:"Cultura general",k:"mc",ins:"Autors, obres i dades que cal saber.",items:mc(CULT)},
  {id:"lesc",g:"l",t:"Expressió escrita breu",k:"open",ins:"Respon en 50-80 mots i després compara-ho amb la resposta model.",items:lines(LESC).map(l=>{const f=l.split("##");return{q:f[0],m:f[1]}})},
  {id:"func",g:"r",t:"Funcions sintàctiques",k:"mc",ins:"Quina funció sintàctica fa el fragment marcat?",items:mc(FUNC,true)},
- {id:"sub",g:"r",t:"Subordinades",k:"mc",ins:"Classifica la subordinada marcada.",items:mc(SUB)},
  {id:"pron",g:"r",t:"Pronoms febles",k:"mc",ins:"Substitueix per pronoms febles els complements marcats.",items:mc(PRON)},
  {id:"verb",g:"r",t:"Verbs",k:"input",ins:"Escriu la forma verbal que es demana.",items:inp(VERB)},
- {id:"dob",g:"r",t:"Doblets",k:"input",ins:"Escriu l’altra forma del doblet.",items:DOB.map((p,i)=>i%2===0?{q:`Forma patrimonial «${p[0]}». Forma culta: {}`,ans:[[p[1]]],ex:`Patrimonial: ${p[0]}. Culta: ${p[1]}.`}:{q:`Forma culta «${p[1]}». Forma patrimonial: {}`,ans:[[p[0]]],ex:`Patrimonial: ${p[0]}. Culta: ${p[1]}.`})},
+ {id:"dob",g:"r",t:"Doblets",k:"mc",ins:"Tria la forma correcta: junt o separat, amb accent o sense.",items:lines(DOB).map(l=>{const p=l.split("#"),f=p[0].split("|");return{q:f[0],opts:f.slice(1),ex:p[1]||""}})},
  {id:"der",g:"r",t:"Derivats (dossier)",k:"input",ins:"Escriu la paraula derivada del mot entre parèntesis.",items:inp(DER)},
  {id:"cor",g:"r",t:"Correcció lingüística",k:"fix",ins:"Corregeix l’error editant la frase directament.",items:lines(COR).map(l=>{const f=l.split(" @ ");return{q:f[0],ans:f[1].split(" / "),ex:f[2]}})},
  {id:"pau",g:"p",t:"Minut PAU",k:"open",ins:"Respon amb les teves paraules, com a l’examen, i després compara-ho amb el model.",items:lines(PAU).map(l=>{const f=l.split("##");return{q:f[0],m:f[1]}})}
