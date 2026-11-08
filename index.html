@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Català II · Repàs del 1r trimestre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F5FA; --card:#FFFFFF; --ink:#18264A; --soft:#5A6585; --line:#DCE1EE; --grid:#E7EBF4;
+  --blue:#2B50C8; --blue-bg:#E6ECFD; --red:#CF2338; --red-bg:#FCE7EA; --green:#13805A; --green-bg:#E0F3EA;
+  --amber:#A86A0A; --amber-bg:#FBF0DA; --margin:#F2A2AC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10141E; --card:#181E2C; --ink:#E5E9F4; --soft:#9AA4BF; --line:#2B3349; --grid:#1B2232;
+    --blue:#89A4FF; --blue-bg:#1F2A4A; --red:#FF7A88; --red-bg:#3A1C24; --green:#5ACB98; --green-bg:#173327;
+    --amber:#E7B25A; --amber-bg:#3A2D14; --margin:#6B2F39; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10141E; --card:#181E2C; --ink:#E5E9F4; --soft:#9AA4BF; --line:#2B3349; --grid:#1B2232;
+  --blue:#89A4FF; --blue-bg:#1F2A4A; --red:#FF7A88; --red-bg:#3A1C24; --green:#5ACB98; --green-bg:#173327;
+  --amber:#E7B25A; --amber-bg:#3A2D14; --margin:#6B2F39; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.45;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin:8px 0 18px}
+h1{font-weight:800;font-size:clamp(30px,6vw,46px);line-height:1;margin:0;letter-spacing:-.02em}
+.sub{color:var(--soft);margin:6px 0 0;font-size:15px}
+.total{font-size:14px;color:var(--soft);text-align:right}
+.total b{display:block;font-size:24px;color:var(--ink)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.groups{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-bottom:10px}
+.gbtn{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;white-space:nowrap;font-weight:600;font-size:15px}
+.gbtn .n{color:var(--soft);font-weight:400;margin-right:6px}
+.gbtn[aria-pressed="true"]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.gbtn[aria-pressed="true"] .n{color:inherit;opacity:.7}
+.sets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.sbtn{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 12px;font-size:14px}
+.sbtn small{color:var(--soft);margin-left:4px}
+.sbtn[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-bg);color:var(--blue)}
+.sbtn[aria-pressed="true"] small{color:var(--blue)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:5px 10px;font-size:13px}
+.tbtn[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--card)}
+.stats{display:flex;gap:12px;font-size:13px;color:var(--soft)}
+.stats span b{font-size:15px;margin-right:3px}
+.s-ok b{color:var(--green)} .s-acc b{color:var(--amber)} .s-ko b{color:var(--red)}
+.progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;background:var(--blue);transition:width .3s}
+/* notebook card */
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 22px 46px;min-height:260px;
+  background-image:repeating-linear-gradient(transparent 0 31px,var(--grid) 31px 32px);background-position:0 14px}
+.card::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:2px;background:var(--margin)}
+.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);margin-bottom:10px}
+.instr{font-size:14px;color:var(--soft);margin:0 0 12px}
+.q{font-family:Literata,Georgia,serif;font-size:clamp(18px,2.6vw,21px);line-height:1.6;margin:0 0 18px}
+.q mark{background:var(--amber-bg);color:inherit;padding:0 3px;border-bottom:2px solid var(--amber);border-radius:2px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:baseline;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:10px 12px;font-family:Literata,Georgia,serif;font-size:17px}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt .key{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;color:var(--soft);min-width:14px}
+.opt.right{border-color:var(--green);background:var(--green-bg)}
+.opt.wrong{border-color:var(--red);background:var(--red-bg);text-decoration:line-through;text-decoration-color:var(--red)}
+.opt:disabled{cursor:default}
+.tf{display:flex;gap:10px}
+.tf .opt{flex:1;justify-content:center;font-family:"Bricolage Grotesque",sans-serif;font-weight:600}
+input.blank{font-family:Literata,Georgia,serif;font-size:inherit;border:none;border-bottom:2px solid var(--blue);background:var(--blue-bg);color:var(--ink);padding:0 6px;width:9.5em;max-width:60vw;border-radius:3px 3px 0 0}
+input.blank.ok{border-color:var(--green);background:var(--green-bg)}
+input.blank.acc{border-color:var(--amber);background:var(--amber-bg)}
+input.blank.ko{border-color:var(--red);background:var(--red-bg)}
+textarea{width:100%;min-height:96px;font-family:Literata,Georgia,serif;font-size:17px;line-height:1.5;border:1.5px solid var(--line);border-radius:8px;padding:10px;background:var(--card);color:var(--ink);resize:vertical}
+.wrongsent{font-family:Literata,Georgia,serif;font-size:18px;color:var(--red);margin:0 0 10px;text-decoration:underline wavy var(--red);text-underline-offset:5px;text-decoration-thickness:1px}
+.wc{font-size:13px;color:var(--soft);margin-top:4px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+.btn{border:none;border-radius:8px;padding:10px 16px;font-weight:600;background:var(--blue);color:#fff}
+:root[data-theme="dark"] .btn{color:#10141E}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#10141E}}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.good{background:var(--green)} .btn.bad{background:var(--red)}
+.hint{font-size:12px;color:var(--soft)}
+.fb{margin-top:16px;border-left:4px solid var(--blue);padding:10px 14px;background:var(--blue-bg);border-radius:0 8px 8px 0;font-size:15px}
+.fb.ok{border-color:var(--green);background:var(--green-bg)}
+.fb.acc{border-color:var(--amber);background:var(--amber-bg)}
+.fb.ko{border-color:var(--red);background:var(--red-bg)}
+.fb strong{display:block;margin-bottom:2px}
+.fb .model{font-family:Literata,Georgia,serif;font-size:16px;line-height:1.55}
+.nav{display:flex;justify-content:space-between;margin-top:12px;gap:8px}
+.gridnums{display:flex;flex-wrap:wrap;gap:4px;margin-top:22px}
+.gridnums button{width:34px;height:30px;border:1px solid var(--line);background:var(--card);border-radius:5px;font-size:12px;color:var(--soft);padding:0}
+.gridnums button.ok{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.gridnums button.acc{background:var(--amber-bg);border-color:var(--amber);color:var(--amber)}
+.gridnums button.ko{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.gridnums button.cur{outline:2px solid var(--ink);outline-offset:1px}
+.gtitle{font-size:13px;color:var(--soft);margin:22px 0 0}
+.empty{text-align:center;padding:40px 10px;color:var(--soft)}
+.theme{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:4px 9px;font-size:13px}
+@media (max-width:560px){.card{padding:18px 14px 18px 34px}.card::before{left:20px}.total{text-align:left}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Català II</h1>
+      <p class="sub">Repàs per a l’examen trimestral de la 1a avaluació</p>
+    </div>
+    <div class="total" id="total"></div>
+  </header>
+  <nav class="groups" id="groups" aria-label="Apartats de l’examen"></nav>
+  <div class="sets" id="sets"></div>
+  <main id="main"></main>
+</div>
+<script>
+/* ============ DADES ============ */
+const SIN = `Va [esmentar] el nom del responsable durant la reunió.|citar|amagar|oblidar|canviar
+Després de la crisi, la situació laboral de molts joves és [precària].|inestable|còmoda|antiga|estranya
+L'Ajuntament vol [fomentar] la lectura entre els adolescents.|promoure|prohibir|avaluar|reduir
+L'equip va [assolir] tots els objectius de la temporada.|aconseguir|abandonar|plantejar|discutir
+La decisió del jutge va semblar a tothom [arbitrària].|capritxosa|justa|meditada|col·lectiva
+L'article analitza el [declivi] de la indústria tèxtil catalana.|decadència|origen|creixement|modernització
+Cal actuar amb [cautela] quan es tracta de dades personals.|prudència|rapidesa|ràbia|ironia
+Ningú no discuteix els efectes [nocius] del tabac.|perjudicials|beneficiosos|visibles|lents
+Va fer un discurs tan [prolix] que el públic es va avorrir.|extens|breu|clar|emotiu
+La policia intenta [esbrinar] què va passar aquella nit.|descobrir|amagar|inventar|negar
+Per una [escletxa] de la paret entrava un fil de llum.|esquerda|taca|finestra|pintura
+La seva actitud [altiva] li va fer perdre molts amics.|arrogant|humil|tímida|alegre
+Els treballadors van [refusar] la proposta de l'empresa.|rebutjar|acceptar|presentar|estudiar
+La fama a les xarxes és sovint un fenomen [efímer].|passatger|permanent|habitual|perillós
+Era [palès] que no havia llegit el llibre.|evident|dubtós|impossible|lamentable
+Al debat, la diputada va [palesar] el seu desacord amb la llei.|manifestar|amagar|resoldre|oblidar
+Traslladar tots aquells arxius va ser una tasca [feixuga].|pesada|lleugera|breu|divertida
+L'escola vol [endegar] un projecte de ràdio.|engegar|tancar|criticar|finançar
+El pintor va fer un [esbós] abans de començar el quadre.|esborrany|marc|pressupost|autoretrat
+Aprovar la selectivitat és una [fita] important per als estudiants.|meta|caiguda|queixa|factura
+Aquell vestit no era gaire [escaient] per a un casament.|adequat|car|incòmode|lleig
+No va saber [copsar] la ironia del comentari.|captar|perdre|escriure|traduir
+El museu guarda una quantitat [ingent] de documents.|enorme|petita|exacta|mitjana
+És un home [pertinaç]: no abandona mai una idea.|obstinat|dubtós|distret|voluble
+El protagonista és un personatge [dissortat] que ho perd tot.|infortunat|afortunat|satisfet|ric
+Les seves explicacions van [esvair] tots els dubtes.|dissipar|augmentar|provocar|escriure
+Va deixar el poble amb molta [recança].|pena|alegria|pressa|indiferència
+Aprofitaré l'[avinentesa] per agrair-vos la feina feta.|ocasió|dificultat|promesa|sorpresa
+Van entrar en un passadís [llòbrec] i humit.|tenebrós|lluminós|ample|silenciós
+El nou govern haurà d'[escometre] la reforma del sistema sanitari.|emprendre|abandonar|delegar|ajornar
+Han decidit [perllongar] el termini d'inscripció.|allargar|escurçar|interrompre|celebrar
+Va ser un viatge [atzarós], ple d'imprevistos.|arriscat|segur|previsible|tranquil
+Per culpa de la tempesta, va [romandre] a casa tot el dia.|quedar-se|marxar|tornar|córrer
+Al maig, el jardí estava [ufanós] de flors.|esplendorós|sec|abandonat|petit
+Esperava els resultats amb un gran [neguit].|inquietud|calma|alegria|cansament
+No és el moment [adient] per parlar-ne.|apropiat|contrari|difícil|molest
+Hem d'[enllestir] el treball abans de divendres.|acabar|començar|perdre|repetir
+Aquest és un argument [fal·laç]: sembla lògic però enganya.|enganyós|veraç|complex|simple
+L'error és [inherent] a l'aprenentatge.|intrínsec|aliè|ocasional|contrari
+Una [desavinença] familiar els va separar durant anys.|desacord|acord|amistat|trobada
+El poble va [retre] homenatge a l'antic mestre.|oferir|rebre|negar|oblidar
+L'informe assenyala diverses [mancances] del sistema educatiu.|carències|excessos|virtuts|riqueses
+A l'hivern, al bar només hi entra algun client [escadusser].|esporàdic|habitual|enfadat|antic
+Els infermers [vetllen] pel benestar dels pacients.|tenen cura|desatenen|s'obliden|competeixen
+Abans de marxar, els estudiants d'intercanvi van [bescanviar] adreces.|intercanviar|vendre|regalar|perdre
+És un nen molt [eixerit]: ho entén tot de seguida.|espavilat|ensopit|trist|maldestre
+[Sovint] anem a caminar per la muntanya.|Freqüentment|Rarament|Mai|Ahir
+Ja està [avesada] a matinar.|acostumada|aliena|cansada|enfadada
+Per culpa de la boira, la visibilitat era [escassa].|minsa|abundant|clara|perfecta
+Les seves crítiques [mordaces] van ofendre tot el jurat.|càustiques|amables|confuses|tímides
+La pujada al cim va ser [àrdua].|difícil|plana|curta|agradable`;
+
+const REF = `Vaig comprar dues novel·les de Rodoreda i [les] vaig llegir aquell estiu.|dues novel·les de Rodoreda|Rodoreda|aquell estiu|unes revistes
+La Marta va parlar amb el director, però no [li] va dir res del projecte.|al director|a la Marta|al projecte|a ella mateixa
+Si vols pa, a la cuina [n']hi ha.|pa|la cuina|tu|res
+Van anar a Girona i [hi] van passar tres dies.|a Girona|tres dies|al viatge|a ells
+Que el canvi climàtic és real, ningú no [ho] discuteix seriosament.|que el canvi climàtic és real|el canvi climàtic|ningú|el debat
+Els investigadors van publicar un estudi sobre el son; [aquest] demostrava que dormim menys que fa trenta anys.|l'estudi|els investigadors|el son|trenta anys
+Les xarxes socials han canviat la manera de comunicar-nos: [en] depenem cada dia més.|de les xarxes socials|de la manera|de comunicar-nos|de cada dia
+Semblava cansat, però no [ho] estava.|cansat|semblava|ell|però
+El llibre [que] em vas deixar m'ha agradat molt.|el llibre|em|tu|molt
+Els joves llegeixen menys que els seus pares, però [aquests] tampoc no llegien gaire a la seva edat.|els seus pares|els joves|els llibres|tots
+Parlar de política a taula? Jo no [en] parlo mai.|de política|de taula|de mi|de parlar
+La biblioteca municipal ha ampliat l'horari. Ara [hi] pots anar fins a les deu.|a la biblioteca municipal|a l'horari|a les deu|a casa
+Aribau va publicar «La pàtria» el 1833; amb [aquest] poema s'acostuma a datar l'inici de la Renaixença.|«La pàtria»|Aribau|1833|la Renaixença
+Els turistes omplen el centre a l'estiu i els veïns [els] miren amb recel.|els turistes|els veïns|el centre|l'estiu
+Molts estudiants volen marxar a l'estranger, però pocs [ho] fan.|marxar a l'estranger|l'estranger|els estudiants|pocs
+La seva germana és metgessa i ell també [ho] vol ser.|metge (atribut)|la seva germana|ell|també
+L'Anna i en Pere es van conèixer a Lleida; ella estudiava Dret i [ell], Medicina.|en Pere|l'Anna|Lleida|Dret
+A les ciutats de la costa l'habitatge s'ha encarit tant que molts joves no [s'hi] poden quedar.|a les ciutats de la costa|a l'habitatge|als joves|al preu
+Han aprovat una nova llei d'educació. Els sindicats [la] critiquen durament.|la nova llei d'educació|l'educació|els sindicats|la crítica
+Quan arribis a la plaça, [la] veuràs de seguida: és la casa del rellotge.|la casa del rellotge (catàfora)|la plaça|una botiga|l'arribada
+Els resultats de l'enquesta van sorprendre tothom: ningú no [els] esperava tan negatius.|els resultats de l'enquesta|tothom|l'enquesta|ningú
+Rodoreda va viure molts anys a l'exili. [Allà] va escriure La plaça del Diamant.|a l'exili|a Barcelona|a la plaça del Diamant|a casa
+Volia un gelat de xocolata, però ja no [en] quedaven.|gelats de xocolata|xocolata|ganes|diners
+El professor ens va proposar un debat i tots [hi] vam estar d'acord.|amb la proposta del debat|amb el professor|amb tots|amb nosaltres
+Els ciutadans van votar la proposta i la majoria [la] va rebutjar.|la proposta|la majoria|la votació|la ciutat
+Rubió i Ors va escriure en castellà abans de passar al català, com [ho] havien fet molts autors de l'època.|escriure en castellà|passar al català|els autors|l'època
+La notícia de la seva mort es va escampar de seguida. Tothom [en] parlava.|de la notícia de la seva mort|de tothom|de seguida|de la seva vida
+El curs vinent faré Biologia; m'[hi] he matriculat aquest matí.|a Biologia|al matí|al curs vinent|a mi
+La reunió va ser llarga i avorrida; [la] recordo com un malson.|la reunió|la llargada|el malson|la memòria
+Ja [ho] he decidit: me'n vaig a viure a Girona.|me'n vaig a viure a Girona (catàfora)|Girona|decidir|viure
+Els meus avis tenen un hort i [hi] passen totes les tardes.|a l'hort|amb els avis|a les tardes|a casa`;
+
+const VF = `La Renaixença és un moviment cultural del segle XVIII.|F|És del segle XIX (aproximadament de 1833 a finals de segle).
+Es considera que la Renaixença comença simbòlicament amb «La pàtria» d'Aribau, publicada el 1833.|V|És l'inici simbòlic, tot i que hi havia antecedents.
+«La pàtria» es va publicar al diari El Vapor.|V|Va aparèixer a El Vapor el 1833.
+Aribau va escriure la major part de la seva obra en català.|F|Gairebé tota la seva obra és en castellà; «La pàtria» és una excepció.
+Els Jocs Florals es van restaurar a Barcelona el 1859.|V|Es van restaurar el 1859 i es van convertir en el gran aparador de la Renaixença.
+El lema dels Jocs Florals era «Pàtria, Fides, Amor».|V|Pàtria, fe i amor: els tres temes dels premis.
+La Flor natural premiava la poesia patriòtica.|F|La Flor natural premiava la poesia amorosa; la patriòtica guanyava l'Englantina d'or.
+Qui guanyava els tres premis ordinaris rebia el títol de Mestre en Gai Saber.|V|Flor natural, Englantina i Viola: tres premis, Mestre en Gai Saber.
+Els Jocs Florals tenen un precedent medieval en el Consistori del Gai Saber de Tolosa.|V|El consistori de Tolosa és del segle XIV i va inspirar els jocs de Barcelona de 1393.
+El català dels Jocs Florals era el català col·loquial del carrer.|F|Era un català culte i arcaïtzant, inspirat en els clàssics medievals.
+Frederic Soler (Pitarra) defensava «el català que ara es parla».|V|Contra el model arcaïtzant dels Jocs Florals, defensava la llengua viva, sobretot al teatre.
+Jacint Verdaguer va néixer a Folgueroles.|V|Va néixer a Folgueroles (Osona) el 1845.
+«L'Atlàntida» de Verdaguer va ser premiada als Jocs Florals de 1877.|V|Va obtenir el premi extraordinari de la Diputació el 1877.
+«Canigó» és una obra de teatre.|F|És un poema llegendari i èpic sobre els orígens de Catalunya als Pirineus (1886).
+Àngel Guimerà és el principal dramaturg de la Renaixença.|V|Obres com «Terra baixa», «Mar i cel» o «Maria Rosa» ho demostren.
+A «Terra baixa», el protagonista, Manelic, és un pastor que baixa de la muntanya.|V|Manelic representa la puresa de la terra alta.
+«Terra baixa» oposa la puresa de la muntanya a la corrupció de la terra baixa.|V|És el gran símbol de l'obra.
+Narcís Oller va conrear sobretot la poesia.|F|Va ser el gran novel·lista de la Renaixença.
+«La febre d'or» tracta l'especulació borsària a la Barcelona de finals del segle XIX.|V|Retrata l'eufòria i la caiguda de la borsa barcelonina.
+La Renaixença només es va donar a Catalunya i no va arribar al País Valencià ni a les Illes.|F|Al País Valencià hi va haver Teodor Llorente i Lo Rat Penat; a Mallorca, Marià Aguiló o Josep M. Quadrado.
+«Lo Gaiter del Llobregat» és el pseudònim de Joaquim Rubió i Ors.|V|Va publicar poemes amb aquest pseudònim des de 1839.
+El pròleg del recull «Lo Gaiter del Llobregat» (1841) es considera un manifest de la Renaixença.|V|Hi reivindica que el català pot tornar a ser llengua literària.
+La Renaixença està relacionada amb el Romanticisme europeu i l'interès per l'Edat Mitjana.|V|El Romanticisme valorava la història i les llengües pròpies de cada poble.
+Durant la Renaixença, el català era la llengua de l'administració i de l'ensenyament.|F|Aquests usos formals eren en castellà: era una situació de diglòssia.
+La Renaixença cultural va contribuir al naixement del catalanisme polític.|V|Per exemple, Valentí Almirall va publicar «Lo catalanisme» el 1886.
+Émile Zola va elogiar la narrativa de Narcís Oller.|V|Zola va prologar la traducció francesa de «La papallona».
+«Mar i cel» és una novel·la de Verdaguer.|F|És un drama d'Àngel Guimerà (1888).
+Manuel Milà i Fontanals va presidir el primer consistori dels Jocs Florals restaurats.|V|Milà i Fontanals és una figura clau dels inicis de la Renaixença.
+Àngel Guimerà va néixer a Santa Cruz de Tenerife.|V|Hi va néixer el 1845 i de petit es va traslladar al Vendrell.
+Els Jocs Florals premiaven sobretot novel·les.|F|Premiaven sobretot poesia.
+A la Renaixença hi va haver molta poesia, però la novel·la va arribar més tard.|V|La gran novel·la arriba al final del període, amb Narcís Oller.
+La burgesia industrial catalana va donar suport a la Renaixença.|V|La burgesia, enriquida amb la industrialització, va finançar i impulsar el moviment.`;
+
+const CULT = `Qui va escriure «La pàtria» (1833), l'inici simbòlic de la Renaixença?|Bonaventura Carles Aribau|Jacint Verdaguer|Àngel Guimerà|Narcís Oller
+En quin any es van restaurar els Jocs Florals a Barcelona?|1859|1833|1877|1898
+Quin era el lema dels Jocs Florals?|Pàtria, Fides, Amor|Llibertat, Igualtat, Fraternitat|Pàtria i Llengua|Fe, Esperança i Caritat
+Quin premi dels Jocs Florals guardonava la poesia patriòtica?|L'Englantina d'or|La Flor natural|La Viola d'or i d'argent|El Premi d'honor
+Quin premi guardonava la poesia amorosa?|La Flor natural|L'Englantina d'or|La Viola d'or i d'argent|La Rosa de plata
+Quin premi guardonava la poesia religiosa?|La Viola d'or i d'argent|La Flor natural|L'Englantina d'or|La Copa d'argent
+Quin títol rebia qui guanyava els tres premis ordinaris?|Mestre en Gai Saber|Poeta nacional|Príncep dels poetes|Mantenidor
+Qui va escriure «L'Atlàntida» i «Canigó»?|Jacint Verdaguer|Joaquim Rubió i Ors|Marià Aguiló|Teodor Llorente
+On va néixer Jacint Verdaguer?|Folgueroles|Reus|Vic|Barcelona
+Qui va escriure el drama «Terra baixa» (1897)?|Àngel Guimerà|Frederic Soler|Narcís Oller|Santiago Rusiñol
+Com es diu el pastor protagonista de «Terra baixa»?|Manelic|Sebastià|Gentil|Saïd
+Qui va escriure la novel·la «La febre d'or»?|Narcís Oller|Àngel Guimerà|Emili Vilanova|Víctor Balaguer
+Amb quin pseudònim és conegut Frederic Soler?|Serafí Pitarra|Lo Gaiter del Llobregat|Víctor Català|Gabriel Alomar
+Qui signava com «Lo Gaiter del Llobregat»?|Joaquim Rubió i Ors|Bonaventura Carles Aribau|Manuel Milà i Fontanals|Antoni de Bofarull
+En quin diari es va publicar «La pàtria» d'Aribau?|El Vapor|La Vanguardia|Diario de Barcelona|La Renaixensa
+Quina entitat valenciana, fundada el 1878, va impulsar la Renaixença al País Valencià?|Lo Rat Penat|L'Avenç|Òmnium Cultural|L'Institut d'Estudis Catalans
+Amb quin moviment artístic europeu es relaciona la Renaixença?|El Romanticisme|El Barroc|Les avantguardes|El Noucentisme
+A quin corrent pertany la narrativa de Narcís Oller?|Realisme i naturalisme|Simbolisme|Surrealisme|Noucentisme
+Qui va publicar «Lo catalanisme» (1886)?|Valentí Almirall|Enric Prat de la Riba|Francesc Macià|Pompeu Fabra
+Qui va presidir el primer consistori dels Jocs Florals restaurats?|Manuel Milà i Fontanals|Jacint Verdaguer|Víctor Balaguer|Àngel Guimerà
+Quina d'aquestes obres és d'Àngel Guimerà?|Mar i cel|Canigó|La papallona|Lo Gaiter del Llobregat
+On va néixer Àngel Guimerà?|Santa Cruz de Tenerife|Barcelona|El Vendrell|Valls
+Quin model de llengua defensaven els Jocs Florals?|Un català culte i arcaïtzant|El català col·loquial de Barcelona|Un català castellanitzat|La normativa de Pompeu Fabra
+Qui defensava «el català que ara es parla»?|Frederic Soler (Pitarra)|Joaquim Rubió i Ors|Manuel Milà i Fontanals|Marià Aguiló
+On hi havia el Consistori del Gai Saber, precedent medieval dels Jocs Florals?|Tolosa|París|Florència|Avinyó
+Quin d'aquests autors de la Renaixença és mallorquí?|Marià Aguiló|Teodor Llorente|Narcís Oller|Àngel Guimerà
+Quin d'aquests autors de la Renaixença és valencià?|Teodor Llorente|Marià Aguiló|Jacint Verdaguer|Frederic Soler
+Quina obra de Narcís Oller va prologar Zola en la traducció francesa?|La papallona|La febre d'or|La bogeria|Terra baixa`;
+
+const LESC = `Explica breument què va ser la Renaixença.##La Renaixença va ser el moviment cultural del segle XIX que va voler recuperar el català com a llengua de cultura i de literatura després de segles de decadència. Lligada al Romanticisme i a la burgesia industrial, idealitzava l'Edat Mitjana. Simbòlicament comença amb «La pàtria» d'Aribau (1833) i es consolida amb els Jocs Florals (1859).
+Què eren els Jocs Florals i per què van ser importants?##Eren un certamen literari d'origen medieval restaurat a Barcelona el 1859 amb el lema «Pàtria, Fides, Amor». Premiaven poesia patriòtica (Englantina d'or), religiosa (Viola d'or i d'argent) i amorosa (Flor natural). Van donar prestigi al català escrit, van crear públic i van descobrir autors com Verdaguer o Guimerà, tot i que defensaven un model de llengua arcaïtzant.
+Per què Jacint Verdaguer és una figura clau de la Renaixença?##Perquè va demostrar que el català podia tornar a ser una gran llengua literària. Amb «L'Atlàntida» (premiada el 1877) i «Canigó» (1886) va crear grans poemes èpics i va enriquir el lèxic combinant la llengua popular de la Plana de Vic amb la tradició culta. Va ser el poeta més popular del seu temps.
+Resumeix l'argument i el simbolisme de «Terra baixa».##Manelic, un pastor ingenu de la muntanya, es casa amb la Marta sense saber que és l'amant de l'amo, Sebastià, que vol tapar la relació. Quan Manelic ho descobreix, mata Sebastià «com un llop» i torna a la muntanya amb la Marta. L'obra oposa la terra alta (puresa, llibertat) a la terra baixa (corrupció, poder i diners).
+Explica la polèmica sobre el model de llengua durant la Renaixença.##Els Jocs Florals defensaven un català culte i arcaïtzant, inspirat en els clàssics medievals, mentre que autors com Frederic Soler (Pitarra) defensaven «el català que ara es parla», més popular i viu, sobretot al teatre. La polèmica mostra que encara no hi havia una normativa comuna, que arribarà al segle XX amb Pompeu Fabra.
+Quin context social i lingüístic explica l'aparició de la Renaixença?##Al segle XIX el català era la llengua del poble, però el castellà ocupava els usos formals: era una situació de diglòssia. La burgesia catalana, enriquida amb la industrialització, i el Romanticisme europeu, que valorava les llengües i les històries de cada poble, van afavorir la recuperació del català com a llengua de cultura.
+Per què és important Narcís Oller per a la literatura catalana?##Oller és el gran novel·lista de la Renaixença i introdueix el realisme i el naturalisme a la narrativa catalana. A «La papallona», prologada per Zola en la traducció francesa, i sobretot a «La febre d'or», retrata la Barcelona burgesa i l'especulació de la borsa. Va demostrar que el català servia per a la novel·la moderna.
+Per què «La pàtria» d'Aribau es considera l'inici simbòlic de la Renaixença?##Perquè el 1833, quan gairebé no es publicava literatura culta en català, Aribau va publicar a El Vapor aquest poema en què enyora la terra natal i reivindica la llengua pròpia. Tot i que ell escrivia en castellà, el poema es va convertir en el símbol de la recuperació literària del català.`;
+
+const FUNC = `Els alumnes van lliurar [la redacció] a temps.|CD|S|CI|AT|Se substitueix per «la»: la van lliurar.
+Vaig regalar un llibre [a la meva germana].|CI|CD|CRV|CC|Se substitueix per «li»: li vaig regalar un llibre.
+La pel·lícula semblava [interessant].|AT|PVO|CD|CC|Amb verbs copulatius (ser, estar, semblar) el complement és atribut: ho semblava.
+Els nens van arribar [cansats] a casa.|PVO|AT|CC|CD|Arribar no és copulatiu: «cansats» concorda amb el subjecte i és predicatiu (en pronominalitza amb «hi»).
+Confio [en tu].|CRV|CC|CI|CD|El verb exigeix la preposició «en»: confiar en algú.
+El projecte va ser aprovat [pel consell escolar].|AG|CC|CRV|S|En una oració passiva, qui fa l'acció és el complement agent.
+[Em] agrada molt la música.|CI|CD|S|CRV|Amb «agradar», la persona és CI; el subjecte és «la música».
+Ahir [a la tarda] vam anar al cine.|CC|CN|CD|CRV|Indica el temps: complement circumstancial.
+[Als meus avis] els encanta passejar.|CI|S|CD|CC|Està duplicat pel pronom «els»: és CI.
+Van nomenar la Laia [presidenta] de l'associació.|PVO|AT|CD|CN|Es refereix al CD «la Laia» a través del verb «nomenar»: predicatiu.
+S'han venut [totes les entrades].|S|CD|AG|CI|Passiva pronominal: el SN concorda amb el verb (s'han venut), per tant és subjecte.
+Hi ha [molta gent] a la plaça.|CD|S|AT|CC|«Haver-hi» és impersonal: el SN és CD (n'hi ha molta) i el verb no concorda.
+Ens vam adonar [de l'error].|CRV|CN|CD|CC|«Adonar-se de» regeix preposició: CRV.
+La casa [del meu avi] és molt antiga.|CN|CRV|CC|CI|Complementa el nom «casa».
+La Júlia està [contenta] amb el resultat.|AT|PVO|CD|CC|«Estar» + adjectiu: atribut (ho està).
+Tots esperaven [que guanyés l'equip local].|CD|S|CRV|AT|Subordinada substantiva de CD: ho esperaven.
+[Que vinguis a la festa] m'alegra molt.|S|CD|CI|CC|Subordinada substantiva de subjecte: això m'alegra.
+Va treballar [com a cambrer] tot l'estiu.|PVO|CC|AT|CN|«Com a» + nom referit al subjecte: complement predicatiu.
+Estic orgullosa [de tu].|CADJ|CRV|CN|CI|Complementa l'adjectiu «orgullosa».
+Parlaven [de política] durant el sopar.|CRV|CD|CN|CC|«Parlar de»: CRV, se substitueix per «en».
+[Aquells nois] juguen a futbol cada dissabte.|S|CD|CC|CI|Concorda amb el verb (juguen): subjecte.
+El gos va mossegar [el carter].|CD|CI|S|CRV|El va mossegar: CD.
+Penso [en les vacances] tot el dia.|CRV|CC|CD|CI|«Pensar en»: CRV, se substitueix per «hi».
+Els meus avis viuen [a Mataró].|CC|CRV|AT|CD|Indica lloc: CC de lloc (hi viuen).`;
+
+const SUB = `No vindré a l'excursió [perquè estic malalt].|Adverbial causal|Adverbial final|Adverbial consecutiva|Substantiva|«Perquè» + indicatiu = causa.
+T'ho explico [perquè ho entenguis].|Adverbial final|Adverbial causal|Substantiva|Adverbial condicional|«Perquè» + subjuntiu = finalitat.
+[Si plou], no sortirem.|Adverbial condicional|Adverbial temporal|Adverbial concessiva|Substantiva|
+[Encara que plogui], sortirem.|Adverbial concessiva|Adverbial condicional|Adverbial causal|Adverbial temporal|Expressa una objecció que no impedeix l'acció.
+[Quan arribis], truca'm.|Adverbial temporal|Adverbial condicional|Adjectiva especificativa|Adverbial final|
+El noi [que viu al tercer] toca el piano.|Adjectiva especificativa|Adjectiva explicativa|Substantiva|Adverbial causal|Sense comes: restringeix de quin noi parlem.
+Va córrer tant [que es va marejar].|Adverbial consecutiva|Adverbial causal|Adjectiva especificativa|Substantiva|«Tant... que» = conseqüència.
+Vull [que m'ajudis].|Substantiva|Adjectiva especificativa|Adverbial final|Adverbial causal|Fa de CD: ho vull.
+La Rosa, [que és metgessa], ens va atendre.|Adjectiva explicativa|Adjectiva especificativa|Substantiva|Adverbial causal|Entre comes: afegeix informació.
+Va estudiar més [del que pensàvem].|Adverbial comparativa|Adverbial consecutiva|Substantiva|Adjectiva especificativa|
+[Tot i que estava cansada], va acabar la feina.|Adverbial concessiva|Adverbial causal|Adverbial temporal|Adverbial condicional|
+Em pregunto [si vindrà].|Substantiva|Adverbial condicional|Adverbial temporal|Adjectiva especificativa|Interrogativa indirecta que fa de CD.
+[Com que no tenia diners], no va comprar res.|Adverbial causal|Adverbial comparativa|Adverbial concessiva|Adverbial condicional|«Com que» introdueix causa.
+[Abans que s'acabi el curs], farem una excursió.|Adverbial temporal|Adverbial final|Adverbial condicional|Substantiva|
+Tinc moltes ganes [de veure't].|Substantiva|Adverbial final|Adjectiva especificativa|Adverbial causal|Substantiva d'infinitiu que complementa el nom «ganes».
+[Mentre cuinava], escoltava la ràdio.|Adverbial temporal|Adverbial concessiva|Adverbial causal|Adjectiva explicativa|Simultaneïtat.
+Faré el que vulguis, [amb tal que callis].|Adverbial condicional|Adverbial final|Adverbial concessiva|Adverbial causal|«Amb tal que» = condició.
+Estic segura [que aprovaràs].|Substantiva|Adverbial causal|Adverbial consecutiva|Adjectiva especificativa|Complementa l'adjectiu «segura». Fixa't en la caiguda de la preposició: no «de que».
+El poble [on vaig néixer] és a l'Empordà.|Adjectiva especificativa|Adjectiva explicativa|Substantiva|Adverbial causal|«On» és un relatiu que té com a antecedent «el poble».
+[Per molt que insisteixis], no hi aniré.|Adverbial concessiva|Adverbial condicional|Adverbial causal|Adverbial comparativa|
+Està tan cansat [que no pot ni parlar].|Adverbial consecutiva|Adverbial causal|Adverbial comparativa|Substantiva|«Tan... que» = conseqüència.`;
+
+const PRON = `Vaig donar [el llibre] [a la Maria].|L'hi vaig donar.|Li'l vaig donar.|Se'l vaig donar.|La hi vaig donar.|el (CD) + li (CI) = l'hi.
+Porta [les maletes] [a l'habitació].|Porta-les-hi.|Porta-li-les.|Porta'ls-hi.|Porta-les-ne.|les (CD) + hi (lloc).
+Hem comprat [tres pomes].|N'hem comprat tres.|Les hem comprat tres.|Hi hem comprat tres.|Ho hem comprat tres.|CD indeterminat amb quantitat: «en».
+Parla [de política] amb el seu pare.|En parla amb el seu pare.|Hi parla amb el seu pare.|La parla amb el seu pare.|Ho parla amb el seu pare.|CRV amb «de»: «en».
+Penso [en les vacances].|Hi penso.|En penso.|Les penso.|Ho penso.|CRV amb «en»: «hi».
+La Rosa és [metgessa].|La Rosa ho és.|La Rosa la és.|La Rosa n'és.|La Rosa hi és.|L'atribut se substitueix per «ho».
+Envia [la carta] [als clients].|Envia-la'ls.|Envia-les-hi.|Envia-li-la.|Envia-la-hi.|la (CD) + els (CI plural) = la'ls.
+Diré [la veritat] [al meu germà].|La hi diré.|Li la diré.|Se la diré.|L'hi diré.|la (CD) + li (CI) = la hi. «L'hi» seria «el» + «li».
+No vull parlar [d'aquest tema].|No en vull parlar.|No hi vull parlar.|No ho vull parlar.|No el vull parlar.|També és correcte: No vull parlar-ne.
+Han portat [els nens] [al parc].|Els hi han portat.|Els han portat-hi.|Hi els han portat.|Els li han portat.|els (CD) + hi (lloc).
+Vam pujar [a la muntanya] ahir.|Hi vam pujar ahir.|En vam pujar ahir.|La vam pujar ahir.|Li vam pujar ahir.|CC de lloc: «hi».
+Sembla [preocupat].|Ho sembla.|El sembla.|En sembla.|Hi sembla.|Atribut amb «semblar»: «ho».
+Ens vam cansar [de tanta xerrameca].|Ens en vam cansar.|Ens hi vam cansar.|Ens la vam cansar.|Ens ho vam cansar.|«Cansar-se de»: «en».
+Fes [les fotocòpies] ara.|Fes-les ara.|Fes-ne ara.|Fes-los ara.|Fes-hi ara.|CD femení plural determinat: «les».
+Compraré [pa] a la fleca.|En compraré a la fleca.|El compraré a la fleca.|Hi compraré a la fleca.|Ho compraré a la fleca.|CD sense determinant: «en».
+Dona [aquest regal] [a la teva àvia].|Dona-l'hi.|Dona-li'l.|Dona-se'l.|Dona-la-hi.|el (CD) + li (CI) = l'hi.`;
+
+const VERB = `Cal que vosaltres {} (venir, present de subjuntiu) més d'hora.@vingueu
+Espero que tu {} (saber, present de subjuntiu) la resposta.@sàpigues/sàpies
+No crec que tots {} (cabre, present de subjuntiu) al cotxe.@càpiguen/càpien
+Vull que ell {} (dur, present de subjuntiu) el pastís.@dugui
+Dubto que jo {} (poder, present de subjuntiu) venir.@pugui
+És millor que nosaltres {} (aprendre, present de subjuntiu) la lliçó avui.@aprenguem
+Que tu {} (treure, present de subjuntiu) bona nota depèn de tu.@treguis
+No cal que tu {} (estar, present de subjuntiu) nerviosa.@estiguis
+Demana que ells {} (rebre, present de subjuntiu) els paquets.@rebin
+Que ell {} (conèixer, present de subjuntiu) el barri ens ajudarà.@conegui
+Si jo {} (tenir, imperfet de subjuntiu) temps, vindria.@tingués
+Si ells {} (poder, imperfet de subjuntiu), ho farien.@poguessin
+Si nosaltres {} (ser, imperfet de subjuntiu) més, guanyaríem.@fóssim
+Si tu {} (saber, imperfet de subjuntiu) la veritat, no diries això.@sabessis
+Si ella {} (fer, imperfet de subjuntiu) esport, estaria més en forma.@fes
+Jo {} (cosir, present d'indicatiu) els botons de la jaqueta.@cuso
+Ell sempre {} (tossir, present d'indicatiu) a la nit.@tus
+Jo {} (collir, present d'indicatiu) les olives a l'hivern.@cullo
+Cada matí jo {} (sortir, present d'indicatiu) a les vuit.@surto
+Jo no {} (riure, present d'indicatiu) mai amb aquests acudits.@ric
+Jo {} (moure, present d'indicatiu) la taula cap a la finestra.@moc
+Jo {} (treure, present d'indicatiu) les escombraries cada nit.@trec
+Jo no {} (conèixer, present d'indicatiu) ningú aquí.@conec
+Jo {} (beure, present d'indicatiu) molta aigua.@bec
+Ell {} (omplir, present d'indicatiu) la gerra d'aigua.@omple
+Nosaltres {} (veure, present d'indicatiu) la sèrie cada dijous.@veiem
+Tu {} (escopir, present d'indicatiu) el pinyol.@escups
+Jo {} (fugir, present d'indicatiu) de les discussions.@fujo
+Jo {} (merèixer, present d'indicatiu) un descans.@mereixo
+Jo {} (valer, present d'indicatiu) per a aquesta feina.@valc
+{} (seure, imperatiu, tu) aquí, si us plau.@seu
+{} (venir, imperatiu, tu) de seguida!@vine
+{} (tenir, imperatiu, tu) paciència.@tingues
+{} (dir, imperatiu, tu) la veritat.@digues
+{} (ser, imperatiu, tu) puntual!@sigues
+{} (fer, imperatiu, tu) els deures ara.@fes
+{} (anar, imperatiu, vosaltres) a dormir.@aneu
+{} (beure, imperatiu, tu) més aigua.@beu
+{} (veure, imperatiu, tu) com ho faig.@veges
+La carta, l'ha {} (escriure, participi) ella mateixa.@escrit
+Han {} (obrir, participi) una botiga nova.@obert
+La Marta ja ha {} (complir, participi) disset anys.@complert
+Has {} (omplir, participi) el dipòsit?@omplert/omplit
+Ha {} (néixer, participi) un nen.@nascut
+Hem {} (viure, participi) molts anys aquí.@viscut
+Ha {} (prendre, participi) una decisió.@pres
+Han {} (imprimir, participi) els apunts?@imprès/imprimit
+Ens hem {} (seure, participi) a la primera fila.@segut
+Hem {} (treure, participi) la pols dels mobles.@tret
+S'ha {} (fondre, participi) la neu.@fos
+Ha {} (cobrir, participi) el pastís amb xocolata.@cobert
+Hem {} (moure, participi) els mobles.@mogut
+Ha {} (coure, participi) el pa massa estona.@cuit/cogut
+Està {} (riure, gerundi) sense parar.@rient
+Va entrar {} (dir, gerundi) bon dia.@dient
+Vam passar la tarda {} (veure, gerundi) pel·lícules.@veient
+Demà {} (venir, futur) la meva cosina.@vindrà
+L'any que ve tu {} (tenir, futur) disset anys.@tindràs
+Jo {} (voler, futur) saber-ho tot.@voldré
+Jo {} (poder, condicional) ajudar-te demà.@podria
+Ahir jo {} (córrer, passat) deu quilòmetres.@vaig córrer/correguí
+L'any passat ells {} (fer, passat) un viatge a Roma.@van fer/feren
+Ahir nosaltres {} (anar, passat) al cine.@vam anar/vàrem anar/anàrem
+Abans jo {} (ser, imperfet d'indicatiu) més tímid.@era
+Quan era petit, jo {} (veure, imperfet d'indicatiu) dibuixos cada dia.@veia
+Abans nosaltres {} (dir, imperfet d'indicatiu) sempre la veritat.@dèiem`;
+
+const DOB = [["pesar","pensar"],["cosa","causa"],["estret","estricte"],["dret","directe"],["lleial","legal"],["reial","regal"],["dit","dígit"],["cadira","càtedra"],["muscle","múscul"],["cabdal","capital"],["ample","ampli"],["plaça","platea"],["paraula","paràbola"],["recobrar","recuperar"],["sobrar","superar"],["senya","signe"],["porxo","pòrtic"],["rodó","rotund"],["pobre","pàuper"],["teula","tègula"],["delme","dècim"],["obra","òpera"],["reixa","regla"],["sencer","sincer"],["farga","fàbrica"],["moble","mòbil"],["eixam","examen"],["comptar","computar"],["raó","ració"],["senyor","sènior"],["vetlla","vigília"],["doblegar","duplicar"],["blasmar","blasfemar"],["espatlla","espàtula"],["fred","frígid"],["llaurar","laborar"],["orella","aurícula"],["tebi","tèbid"]];
+
+const DER = `Enyora la {} (sol) i el silenci del mas Roger.@solitud/soledat
+El retaule major de l'església de Santa Maria d'Igualada pertany a l'anomenat barroc {} (tard).@tardà
+Els professors de secundària es queixen de la gran {} (heterogeni) de nivells que té l'alumnat.@heterogeneïtat
+Continua tot dret fins al segon {} (trencar).@trencant/trencall
+Per treure la pols dels llibres és millor que facis servir un {} (ploma).@plomall/plomer
+El paquet ha caigut del carro i ha quedat {} (bony).@abonyegat
+L'estudi conclou que els llibres recomanats pels {} (llibre) són més valorats pels lectors.@llibreters
+Els van aconsellar no {} (través) la zona fins que no se n'haguessin retirat els vidres.@travessar/atravessar
+Darrerament hi ha molta crispació amb les companyies {} (petroli), però aquestes deneguen la responsabilitat sobre l'{} (car) dels preus dels combustibles.@petrolieres/petrolíferes;encariment
+Cada matí se sentia la {} (piular) dels ocells del bosc de la font.@piuladissa/piulada/piuleig
+El pilot es va veure obligat a fer un {} (aterrar) forçós.@aterratge
+És un terreny massa {} (sorra) per a la gespa.@sorrenc/sorrós
+Tothom confiava en ella per la seva {} (honest).@honestedat
+Estan fent obres al pis per {} (gran) el menjador.@engrandir/agrandir
+Després de l'excursió, els nens estaven {} (amb set).@assedegats
+Abans fèiem servir {} (encendre) de fusta per encendre el foc.@encenalls
+Com que no han tractat bé l'aigua, ha sortit {} (verd) als graons de la piscina.@verdet
+Les importacions xineses han permès {} (barat) els costos.@abaratir
+Totes les autoritats van assistir a l'{} (enterrar) de l'escultora.@enterrament
+Ha aprofitat un moment de distracció per fer-se {} (fondre).@fonedís
+Si no endrecem l'{} (escampar) que tenim a la taula, no trobarem cap document. Cada vegada se'ns hi {} (munt) més arxius i expedients.@escampall/escampadissa/escampament;amunteguen
+Volien llogar un pis {} (moble) perquè hi havien de viure només mig any.@moblat
+Caminava descalç, esgotat, amb els peus {} (sagnar).@sagnants/sagnosos
+Explicar-li-ho tot ha {} (lleuger) la seva mala consciència.@alleugerit/alleujat
+Ens hem de fer l'anàlisi, perquè és una malaltia {} (encomanar).@encomanadissa
+Aquest plànol diferencia entre l'alineació proposada per l'Ajuntament, {} (coincidir) amb l'edificació actual, i la que proposa el Patronat.@coincident
+El preu dels mobles depèn de l'{} (antic) de la peça i de la qualitat de la fusta.@antiguitat/antigor
+L'increment de les vendes es registra des que han {} (barat) el preu dels productes de consum habitual.@abaratit
+La majoria de les varietats són autoincompatibles, és a dir necessiten pol·len d'una altra varietat per {} (fruit).@fructificar/fruitar
+A causa de la vaga de transports, els proveïdors d'aliments no van poder {} (abast) les botigues de les poblacions {} (muntanya).@abastir/abastar;muntanyenques/muntanyeses
+L'{} (quitrà) dels carrers del barri del Mig es durà a terme a mitjan juliol.@enquitranament/enquitranat
+No em sembla sincer, és una {} (humil) fingida.@humilitat
+Les ametlles de l'ametller del tros petit {} (amarg).@amarguegen/amarguen
+L'actuació de l'equip ha estat {} (decebre). El públic ha xiulat els jugadors i la directiva.@decebedora
+Ha deixat de ploure i el cel s'ha {} (clar) de sobte.@aclarit/aclarat/esclarit
+Van premiar l'obra de l'{} (assaig) {} (Hongria).@assagista;hongarès
+Per {} (treure el greix) el terra del taller utilitzen un producte químic que només es distribueix als mecànics i professionals acreditats.@desgreixar
+La {} (lleig) de la imatge era esgarrifosa.@lletjor/lletgesa
+Les lluites internes pel poder van {} (feble) la coalició.@afeblir
+Va poder {} (vernís) la porta del menjador del color que ella volia.@envernissar
+No {} (forn) els panellets fins que els hàgiu pintat amb el rovell d'ou.@enforneu
+Per valorar si poden construir l'embarcador, cal mesurar la {} (fondo) de la cala.@fondària
+El congrés pretén oferir una visió de la construcció del paisatge {} (Pirineu).@pirinenc/pirinaic
+La preinscripció no {} (garantia) tenir una plaça en un curs.@garanteix
+Consulta sovint la informació {} (borsa): és un inversor autodidacte.@borsària/borsística
+Tu quan t'interessa et fas el sord. Potser caldria que et fessis mirar aquesta {} (sord).@sordesa
+Treballen en un projecte que lluita contra la pobresa i l'{} (excloure) social.@exclusió
+Vam {} (costa) Sardenya fins a arribar a Càller.@costejar
+Cal valorar les fonts orals i la {} (savi) popular com a eines de transmissió de coneixement.@saviesa
+El primer pas del procés és {} (tros) la fusta i posar-la a {} (tou) amb productes químics.@trossejar;estovar
+Les taronges {} (esprémer) tenen molta vitamina C.@espremudes
+Les fotografies són plenes de {} (dit).@ditades
+Les pàgines dels llibres vells s'han anat {} (groc).@engroguint/groguejant
+El pintor {} (París) exposa per primera vegada a Catalunya.@parisenc
+El bronze és l'{} (aliar) del coure i l'estany.@aliatge
+L'opinió dels crítics no {} (condició) les decisions del jurat.@condiciona
+Com que se sentia udolar els llops, els nens estaven {} (terror).@aterrits/aterroritzats/terroritzats
+Abans de redactar l'informe, cal fer-ne un {} (esborrar).@esborrany
+Va començar a {} (ploure) ahir a mitjanit i de moment no s'atura.@ploviscar/plovisquejar/plovinejar
+La trobada es farà en un hotel {} (Tunis).@tunisià/tunisenc
+Els seus discursos ja no tenen la {} (brillant) que tenien fa uns anys.@brillantor/brillantesa
+Les {} (flama) de la foguera es veien des de la carena.@flamarades/flamerades
+No mengis tan de pressa! {} (sabor) l'essència de cada plat.@assaboreix
+Feia tanta calor i estaven tan cansats que veien {} (mirar) a l'asfalt. La carretera era un desert.@miratges
+Trobar menjar {} (casa) als restaurants barcelonins és difícil.@casolà
+No pitgis el pedal del fre, sinó el de l'{} (embragar).@embragatge
+Estaven tan {} (joc) que no se'n van adonar.@enjogassats
+Gràcies a la música i a la {} (quiet) de la nit es va {} (serè).@quietud/quietesa;asserenar
+La calor {} (fer tornar agre) la nata.@agreja
+Des d'aquí se sent la {} (sal) i la remor de la mar.@salabror
+Té una lleugera {} (coix) a causa de l'accident de cotxe que va tenir.@coixesa/coixera
+Per fer càlculs d'aquesta magnitud, es poden {} (rodó) les xifres.@arrodonir
+Fa dies que no plou, caminem per un camí {} (pols) i {} (pedra).@polsós/polsegós;pedregós
+Per netejar aquestes rajoles es necessita un {} (fregar) resistent.@fregall
+No ha tingut gaire èxit en les seves operacions {} (finançar).@financeres
+L'àvia parlava mentre {} (mica) el pa.@esmicolava
+Aquests pantalons són massa llargs, els vull {} (curt).@escurçar/acurtar
+Les pel·lícules Dogma tenen un certificat que expedeix un comitè que valora la pel·lícula i s'assegura que compleix amb el vot de {} (cast).@castedat
+La crema de {} (branca) d'olivera és habitual en aquesta època.@brancam/brancatge
+Ningú no dubta de la {} (fals) de les seves afirmacions.@falsedat
+No té cap sentit {} (magatzem) tots els documents interns.@emmagatzemar
+Els fruiters no {} (arrel) bé en terrenys {} (argila).@arrelen;argilosos
+És una persona responsable i {} (seny).@assenyada
+L'Ajuntament subhastarà els tres habitatges que construirà al terreny del Mercat Vell per poder {} (cost) la urbanització d'aquesta zona.@costejar
+La Guàrdia Civil ha confiscat 4.630 quilos de seitons d'una mida inferior a la permesa al pas {} (frontera) de la Jonquera.@fronterer
+En un inici, el pla preveia que la llera passés per la llacuna, però finalment es va optar per {} (estret) el darrer tram del desviament.@estrènyer/estretir
+S'ha {} (tossut) a acabar la carrera en un any. Ho aconseguirà.@entossudit
+Emprem la negreta per {} (èmfasi) un element que cal destacar.@emfatitzar/emfasitzar
+Soc molt {} (fred): sempre dormo tapat i amb la finestra tancada.@fredolic
+Els dubtes la {} (turment). És incapaç de prendre una decisió.@turmenten
+L'actor {} (Sabadell) Ramon Madaula estrena aquesta nit El llibertí.@sabadellenc
+Quan li van dir els resultats, va {} (pàl·lid) de cop.@empal·lidir
+La cantant {} (Brasil) actua aquesta nit a l'Auditori.@brasilera/brasilenya
+El mirava fixament, sense {} (parpella).@parpellejar
+Un estudi {} (Canadà) afirma que l'Alzheimer apareix més tard en les persones que són bilingües que en les que no ho són.@canadenc
+Cada matí em faig un suc de taronja amb l'{} (esprémer).@espremedora
+Un dels símptomes de la malaltia és la sensació de {} (feble).@feblesa
+Li han prohibit el consum de sucre; ara s'{} (dolç) el te amb sacarina.@endolceix/endolça
+L'obra de l'autora {} (Sitges) reflecteix la {} (buit) existencial de la protagonista.@sitgetana;buidor/buidesa
+Quan facis la intervenció al congrés t'has d'expressar amb {} (clar) i no excedir el temps de què disposes.@claredat
+La calor {} (tornar bla) el quitrà.@estova/ablaneix
+Els nens amb {} (cec) o amb alguna deficiència visual poden seguir l'obra de teatre a través del sistema Audesc.@ceguesa/ceguetat
+El ple del Parlament {} (illa) debatrà demà el cas Andratx.@illenc
+Costava de seguir el fil del raonament: parlava amb massa {} (vague).@vaguetat/vaguesa
+Els veïns volen {} (jardí) els antics terrenys de la pista de tennis.@enjardinar
+Cal remenar la salsa sovint, si no volem que s'{} (grumoll).@engrumolli/agrumolli
+La {} (vidre) s'ha traslladat a un altre barri.@vidrieria
+Van {} (coratge) la Irene perquè presentés la seva obra al concurs.@encoratjar
+L'aplicació de la nova llei va {} (tèrbol) la convivència entre veïns.@enterbolir
+He perdut la clau del {} (cadena) de la bicicleta.@cadenat
+En veure la {} (negre) del cel vam decidir-nos {} (recer) en aquella cova.@negror/negrura;a arrecerar/a arrecerar-nos/arrecerar/arrecerar-nos
+L'allioli fet a mà és més bo que el que es fa amb la {} (batre).@batedora
+La farina de blat de moro s'empra per {} (espès) les salses.@espessir
+Abans de final de curs tots saben {} (nus) els cordons de les sabates.@nuar/anusar
+Cal ser respectuós amb les {} (creure) religioses.@creences
+La prova d'accés consisteix a {} (improvís) sobre una forma o una imatge per crear una peça nova.@improvisar
+Cal superar un procés de selecció {} (rigor).@rigorós
+L'advocat de l'acusat acaba de {} (matís) les declaracions que va fer en sortir del judici.@matisar
+Pot imprimir la targeta d'{} (embarcar) a través del nostre lloc web.@embarcament
+Per mantenir l'{} (escalfar) de la llar s'han de segellar les portes i les finestres.@escalfor
+Els periodistes no es van {} (content) amb la informació que els havia facilitat l'advocat de la família de la víctima.@acontentar
+L'{} (escàs) de recursos energètics comença a alarmar les autoritats del país.@escassetat/escassesa
+El sol {} (tardor) es filtra a través del {} (fulla) dels plàtans.@tardorenc/tardoral;fullatge/fullam
+No podràs canviar el vidre trencat tu sol, truca al {} (vidre).@vidrier
+El va tractar amb {} (brusc) i {} (fred).@brusquedat;fredor/fredat
+Era un vell {} (sense dents) i sord que només parlava amb el seu gos.@desdentegat/desdentat
+El xoc del vagó va quedar {} (mort) gràcies al {} (topar).@esmorteït/amortit;topall
+Aquelles paraules tan {} (punyir) li van fer molt de mal.@punyents
+M'agrada sortir a passejar al vespre, quan comença a {} (fosc).@fosquejar/enfosquir/enfosquir-se
+Quan va saber la notícia, va notar que el seu cos s'{} (petit).@empetitia
+La migdiada no li ha fet passar la son; més aviat l'ha {} (mandra).@emmandrit
+Les paraules de la conferenciant eren clares i {} (entendre).@entenedores
+Per farcir el xai, primer l'has de {} (treure l'os) i després coure'l.@desossar
+Un cop instal·lat l'aire {} (condició), el despatx ja estarà amb condicions de treballar-hi.@condicionat
+S'enfrontava a la vida amb {} (amarg) i desconfiança.@amargor/amargura
+El porter és molt {} (traça), tothom li truca perquè els repari les avaries domèstiques.@traçut
+Aquells mots van {} (bla) el seu cor {} (dur).@ablanir/estovar;endurit
+Martí i Pol va patir una tuberculosi als 19 anys que l'obligà a {} (llit) durant un any.@enllitar-se/enllitar
+Els paletes van començar {} (nivell) el terra de la casa amb el del carrer.@a anivellar/anivellar
+Han concedit el guardó a un {} (conte) txec.@contista
+Sempre està distret: la seva {} (badoc) no té cura.@badoqueria
+La policia va desviar el trànsit per un {} (trencar).@trencall
+Les maduixes d'hivernacle no tenen tan bon gust com les {} (bosc).@boscanes/bosquetanes
+Aquest objecte no és d'aquí; és de procedència {} (fora).@forana
+No toqueu el gerro xinès, és d'una porcellana molt {} (trencar).@trencadissa
+Va idear un sistema molt {} (enginy) per organitzar els torns.@enginyós
+L'acord que han assolit és {} (avantatge) per als interessos de l'associació.@avantatjós
+Hi ha llibres condemnats a podrir-se en un calaix o a {} (omplir-se de pols) en qualsevol prestatge de la biblioteca.@empolsegar-se/empolsinar-se/empolsegar
+Van perdre la clau del bagul i el van {} (pany) per poder obrir-lo.@despanyar
+He demanat un regle per {} (mida) el llom del diccionari.@amidar
+La pintura està tota {} (crostó) perquè hi fa molta humitat.@escrostonada/encrostonada
+Llavors va començar a ploure, a {} (llampec) i a {} (tro).@llampegar/llampeguejar;tronar
+El grup ecologista afirma que no hi havia cap necessitat d'{} (quitrà) un camí que s'endinsa al bosc envoltant la {} (faig).@enquitranar;fageda
+Les seves paraules, lluny d'{}-lo (dolor), l'estimulaven.@adolorir/adolorar
+El sistema educatiu català defineix l'alumne d'incorporació {} (tard) com aquell que s'integra en un centre educatiu més tard dels vuit anys, i que prové de fora de Catalunya.@tardana
+Aquest càntir té una esquerda i {} (gota).@degota/goteja`;
+
+const COR = `Tinc que estudiar més per a l'examen. @ He d'estudiar més per a l'examen. @ «Tenir que» és un castellanisme: l'obligació s'expressa amb «haver de».
+Hi han molts alumnes a classe. @ Hi ha molts alumnes a classe. @ «Haver-hi» és impersonal i va sempre en singular.
+M'he donat compte de l'error. @ M'he adonat de l'error. @ «Donar-se compte» és un castellanisme: «adonar-se».
+En quant a les notes, han millorat. @ Pel que fa a les notes, han millorat. / Quant a les notes, han millorat. @ «En quant a» és incorrecte: «pel que fa a» o «quant a».
+Lo més important és la salut. @ El més important és la salut. @ L'article neutre «lo» no és normatiu.
+Estic content de que vinguis. @ Estic content que vinguis. @ Caiguda de preposició davant de «que».
+Va dir de que no vindria. @ Va dir que no vindria. @ No hi ha cap preposició: «dir que».
+Li vaig explicar als meus pares. @ Els vaig explicar als meus pares. / Ho vaig explicar als meus pares. @ El CI és plural: «els», no «li».
+Desde casa es veu el mar. @ Des de casa es veu el mar. @ S'escriu en dues paraules: «des de».
+Hem de pendre una decisió. @ Hem de prendre una decisió. @ La forma normativa és «prendre».
+Aquesta és la noia a la que vaig veure. @ Aquesta és la noia que vaig veure. @ El CD de relatiu no porta preposició: «que».
+És l'amic amb el que vaig viatjar. @ És l'amic amb qui vaig viatjar. / És l'amic amb el qual vaig viatjar. @ Després de preposició: «qui» (persones) o «el qual», mai «el que».
+Va arribar sobre les cinc. @ Va arribar cap a les cinc. @ Per a l'hora aproximada: «cap a».
+Penso de que tens raó. @ Penso que tens raó. @ No hi ha preposició abans de «que».
+Ho sento, no m'en recordo. @ Ho sento, no me'n recordo. @ Davant de verb que comença per consonant: «me'n».
+La va trucar per telèfon. @ Li va trucar per telèfon. @ «Trucar a algú» porta CI: «li».
+Contra més estudies, més aprens. @ Com més estudies, més aprens. @ La correlació és «com més... més».
+Ens vam trobar en la plaça. @ Ens vam trobar a la plaça. @ Davant d'article determinat s'usa «a», no «en».
+Aquesta pel·lícula no la he vista. @ Aquesta pel·lícula no l'he vista. @ El pronom s'apostrofa davant de vocal o hac: «l'he».
+Va guanyar el premi, lo qual ens va sorprendre. @ Va guanyar el premi, la qual cosa ens va sorprendre. / Va guanyar el premi, cosa que ens va sorprendre. @ «Lo qual» no és normatiu.
+Hi ha que tenir paciència. @ Cal tenir paciència. / S'ha de tenir paciència. @ «Haver-hi que» és un castellanisme.
+Els nens jugaven mentres els pares xerraven. @ Els nens jugaven mentre els pares xerraven. @ La forma és «mentre».
+Estic d'acord amb tú. @ Estic d'acord amb tu. @ «Tu» no porta accent.
+Has de tenir en conte que hi ha examen. @ Has de tenir en compte que hi ha examen. @ «Tenir en compte» (de «comptar»), no «conte».
+Disfrutem de l'estiu! @ Gaudim de l'estiu! / Gaudim l'estiu! @ «Disfrutar» és un barbarisme: «gaudir».
+Al sortir de classe, vaig trobar la Laia. @ En sortir de classe, vaig trobar la Laia. @ Valor temporal amb infinitiu: «en + infinitiu».
+Fa temps que no el veig, al Joan. @ Fa temps que no el veig, el Joan. @ El CD de persona no porta preposició.
+Vaig veure a la Marta al mercat. @ Vaig veure la Marta al mercat. @ El CD no porta la preposició «a».
+Tots estaven d'acord en que calia canviar. @ Tots estaven d'acord que calia canviar. @ Caiguda de preposició davant de «que».
+Es va quedar a dormir perque era tard. @ Es va quedar a dormir perquè era tard. @ «Perquè» causal porta accent.
+Van surtir tard de la festa. @ Van sortir tard de la festa. @ L'infinitiu és «sortir».
+He comprat el regal per la meva mare. @ He comprat el regal per a la meva mare. @ Destinatari: «per a».
+Ahir em vaig enterar de la notícia. @ Ahir em vaig assabentar de la notícia. @ «Enterar-se» és un castellanisme.
+Vam arribar a la estació massa tard. @ Vam arribar a l'estació massa tard. @ L'article s'apostrofa davant de vocal: «l'estació».
+Aquest tema és molt important a nivell polític. @ Aquest tema és molt important des del punt de vista polític. / Aquest tema és políticament molt important. @ «A nivell de» és una expressió que cal evitar quan no parla de nivells reals.
+Va deixar de fumar fa dos anys enrere. @ Va deixar de fumar fa dos anys. / Va deixar de fumar dos anys enrere. @ Redundància: «fa» i «enrere» volen dir el mateix.
+Se m'ha olvidat el llibre. @ Se m'ha oblidat el llibre. @ La forma catalana és «oblidar».
+Busquem un pis que tingui ascensor i que sigui barato. @ Busquem un pis que tingui ascensor i que sigui barat. @ «Barato» és castellà: «barat».`;
+
+const PAU = `En què consisteix el canvi i caiguda de preposició? Posa'n exemples.##Les preposicions àtones (a, en, de) que regeix un verb, un nom o un adjectiu cauen obligatòriament davant de la conjunció «que»: «Estic segura de la victòria» → «Estic segura que guanyarem» (no «de que»). Davant d'infinitiu solen mantenir-se, però la preposició «en» sovint es canvia per «a»: «Insisteix en aquest punt» → «Insisteix a repetir-ho».
+Explica amb les teves paraules què és la diglòssia.##És una situació en què dues llengües conviuen en una comunitat però amb funcions desiguals: una té prestigi i s'usa en els àmbits formals (administració, escola, mitjans) i l'altra queda reduïda als usos familiars i informals. Ho va descriure Ferguson i ho va ampliar Fishman. Exemple: el català del segle XIX, usat a casa mentre el castellà ocupava els usos formals.
+Què és el bilingüisme? Diferencia l'individual del social.##El bilingüisme individual és la capacitat d'una persona de parlar dues llengües. El social és la convivència de dues llengües en una mateixa comunitat. Molts sociolingüistes consideren que un bilingüisme social perfectament equilibrat és difícil de mantenir i que sovint amaga una situació de diglòssia.
+Què és la substitució lingüística?##És el procés pel qual una comunitat abandona a poc a poc la seva llengua en favor d'una altra, normalment dominant, fins que deixa de transmetre-la als fills. Sol començar amb una situació de diglòssia.
+Què és la normalització lingüística?##És el procés per recuperar els usos socials d'una llengua minoritzada en tots els àmbits (administració, ensenyament, mitjans, comerç) perquè funcioni amb normalitat. Inclou mesures legals, com la Llei de política lingüística de 1998.
+Quina diferència hi ha entre normativització i normalització?##La normativització consisteix a fixar les normes d'una llengua (ortografia, gramàtica, diccionari), com van fer Pompeu Fabra i l'IEC a principis del segle XX. La normalització consisteix a estendre'n l'ús social.
+Què és un barbarisme? Posa'n exemples.##És una paraula o construcció d'una altra llengua que s'usa sense necessitat quan ja n'hi ha una de pròpia. Exemples: «tenir que» per «haver de», «enterar-se» per «assabentar-se», «disfrutar» per «gaudir».
+Què és un doblet lingüístic?##És una parella de paraules que provenen del mateix mot llatí però que han entrat a la llengua per camins diferents: una per evolució popular (patrimonial, més transformada) i l'altra com a cultisme, presa directament del llatí. Exemples: pesar/pensar, cosa/causa, dret/directe.
+Explica la diferència entre registre formal i informal.##El registre és la varietat que triem segons la situació (tema, canal, relació entre els parlants i intenció). El formal és propi de situacions acurades, com un examen o una conferència, i usa lèxic precís i estructures elaborades. L'informal és espontani, amb col·loquialismes i frases curtes.
+Què és la llengua estàndard?##És la varietat comuna i neutra que fan servir l'escola, els mitjans i l'administració perquè s'entengui a tot el territori. Es basa en la normativa, però és flexible i accepta variants geogràfiques.
+Què és un pronom feble i quines funcions pot fer?##És una forma àtona que s'uneix al verb i substitueix un complement: CD (el, la, els, les, ho, en), CI (li, els), atribut (ho), CRV (en, hi) o complement de lloc (hi, en). Va davant del verb (proclític) o darrere, unit amb guionet o apòstrof (enclític).
+Què és una perífrasi verbal? Posa'n una d'obligació correcta.##És una construcció de dos verbs (un auxiliar conjugat i un infinitiu, gerundi o participi) que funciona com un sol nucli i expressa matisos d'obligació, aspecte o probabilitat. Obligació: «haver de» + infinitiu («He d'estudiar»), no «tenir que».
+Què és la passiva pronominal?##És una construcció amb «es» i un verb en 3a persona que concorda amb el subjecte pacient: «Es venen pisos». Si el subjecte és plural, el verb ha d'anar en plural; és incorrecte «Es ven pisos».
+Quan s'usa «per» i quan «per a»?##«Per a» indica destinació o finalitat davant d'un nom («un regal per a la mare»). «Per» indica causa, mitjà, lloc de pas o agent («ho fa per tu», «passa per Girona»). Davant d'infinitiu, la normativa actual admet «per» i «per a» per expressar finalitat.
+Quina diferència hi ha entre anàfora i catàfora?##L'anàfora és quan un element remet a una cosa ja dita: «Vaig veure la Laia i la vaig saludar». La catàfora és quan remet a una cosa que es dirà després: «Ja ho he decidit: me'n vaig». Totes dues serveixen per cohesionar el text.
+Què és el conflicte lingüístic?##És la situació en què dues llengües d'un mateix territori competeixen pels mateixos àmbits d'ús i una tendeix a imposar-se sobre l'altra. Pot acabar amb la substitució de la llengua dominada o amb la seva normalització.
+Què és la derivació? Explica la diferència entre prefix i sufix.##És un procediment per formar paraules noves afegint morfemes a una arrel. El prefix va davant i no canvia la categoria (fer → desfer); el sufix va darrere i sovint sí que la canvia (blanc → blancor). Si s'afegeixen prefix i sufix alhora, és parasíntesi (bony → abonyegat).
+Defineix amb les teves paraules «efímer» i fes-ne una frase.##Que dura molt poc temps. Exemple: «L'èxit a les xarxes sovint és efímer».
+Defineix amb les teves paraules «palès».##Que és clar i evident, que tothom ho pot veure. Exemple: «Era palès que estava nerviós».
+Defineix amb les teves paraules «recança».##Pena o tristesa per haver de deixar o perdre alguna cosa; també una mica de remordiment.
+Defineix amb les teves paraules «escaient».##Adequat, que convé a la situació. Exemple: «No és un comentari escaient en un funeral».
+Defineix amb les teves paraules «neguit».##Inquietud, nerviosisme o angoixa per alguna cosa que preocupa.
+Defineix amb les teves paraules «ingent».##Molt gran, enorme, en quantitat o en mida.
+Defineix amb les teves paraules «llòbrec».##Fosc i trist, que fa una mica de por. Exemple: «un soterrani llòbrec».
+Defineix amb les teves paraules «avinentesa».##Ocasió o moment oportú per fer alguna cosa.
+Defineix amb les teves paraules «pertinaç».##Que persisteix en una idea o una actitud encara que hi hagi dificultats; obstinat.
+Defineix amb les teves paraules «copsar».##Captar o entendre el sentit d'alguna cosa, sobretot si no és evident.`;
+
+/* ============ MODEL ============ */
+const ABBR={S:"Subjecte",CD:"Complement directe",CI:"Complement indirecte",AT:"Atribut",PVO:"Complement predicatiu",CRV:"Complement de règim verbal",AG:"Complement agent",CC:"Complement circumstancial",CN:"Complement del nom",CADJ:"Complement de l'adjectiu"};
+const lines=s=>s.split("\n").map(x=>x.trim()).filter(Boolean);
+const mc=(s,abbr)=>lines(s).map(l=>{const f=l.split("|");const m=x=>abbr?(ABBR[x]||x):x;return{q:f[0],opts:[m(f[1]),m(f[2]),m(f[3]),m(f[4])],ex:f[5]||""}});
+const inp=s=>lines(s).map(l=>{const i=l.lastIndexOf("@");return{q:l.slice(0,i).trim(),ans:l.slice(i+1).split(";").map(a=>a.split("/").map(y=>y.trim()))}});
+const SETS=[
+ {id:"sin",g:"c",t:"Sinònims",k:"mc",ins:"Tria el sinònim que pot substituir la paraula marcada en aquest context.",items:mc(SIN)},
+ {id:"ref",g:"c",t:"Referents",k:"mc",ins:"A què fa referència el pronom o la paraula marcada?",items:mc(REF)},
+ {id:"vf",g:"l",t:"Vertader o fals",k:"tf",ins:"Renaixença i Jocs Florals: l’afirmació és vertadera o falsa?",items:lines(VF).map(l=>{const f=l.split("|");return{q:f[0],a:f[1]==="V",ex:f[2]}})},
+ {id:"cult",g:"l",t:"Cultura general",k:"mc",ins:"Autors, obres i dades que cal saber.",items:mc(CULT)},
+ {id:"lesc",g:"l",t:"Expressió escrita breu",k:"open",ins:"Respon en 50-80 mots i després compara-ho amb la resposta model.",items:lines(LESC).map(l=>{const f=l.split("##");return{q:f[0],m:f[1]}})},
+ {id:"func",g:"r",t:"Funcions sintàctiques",k:"mc",ins:"Quina funció sintàctica fa el fragment marcat?",items:mc(FUNC,true)},
+ {id:"sub",g:"r",t:"Subordinades",k:"mc",ins:"Classifica la subordinada marcada.",items:mc(SUB)},
+ {id:"pron",g:"r",t:"Pronoms febles",k:"mc",ins:"Substitueix per pronoms febles els complements marcats.",items:mc(PRON)},
+ {id:"verb",g:"r",t:"Verbs",k:"input",ins:"Escriu la forma verbal que es demana.",items:inp(VERB)},
+ {id:"dob",g:"r",t:"Doblets",k:"input",ins:"Escriu l’altra forma del doblet.",items:DOB.map((p,i)=>i%2===0?{q:`Forma patrimonial «${p[0]}». Forma culta: {}`,ans:[[p[1]]],ex:`Patrimonial: ${p[0]}. Culta: ${p[1]}.`}:{q:`Forma culta «${p[1]}». Forma patrimonial: {}`,ans:[[p[0]]],ex:`Patrimonial: ${p[0]}. Culta: ${p[1]}.`})},
+ {id:"der",g:"r",t:"Derivats (dossier)",k:"input",ins:"Escriu la paraula derivada del mot entre parèntesis.",items:inp(DER)},
+ {id:"cor",g:"r",t:"Correcció lingüística",k:"fix",ins:"Corregeix l’error editant la frase directament.",items:lines(COR).map(l=>{const f=l.split(" @ ");return{q:f[0],ans:f[1].split(" / "),ex:f[2]}})},
+ {id:"pau",g:"p",t:"Minut PAU",k:"open",ins:"Respon amb les teves paraules, com a l’examen, i després compara-ho amb el model.",items:lines(PAU).map(l=>{const f=l.split("##");return{q:f[0],m:f[1]}})}
+];
+const GROUPS=[{id:"c",n:"1",t:"Comprensió lectora"},{id:"l",n:"2",t:"Fet literari"},{id:"r",n:"3",t:"Reflexió lingüística"},{id:"p",n:"5",t:"Minut PAU"}];
+const BYID=Object.fromEntries(SETS.map(s=>[s.id,s]));
+
+/* ============ ESTAT ============ */
+const KEY="catala2-trimestre1-v1";
+let store={r:{},mode:{},cur:"sin"};
+try{const raw=localStorage.getItem(KEY);if(raw)store=Object.assign(store,JSON.parse(raw))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}};
+let st={set:BYID[store.cur]?store.cur:"sin",order:[],pos:0,done:false};
+
+const typo=s=>s.replace(/'/g,"’");
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const mark=s=>typo(esc(s)).replace(/\[([^\]]+)\]/g,"<mark>$1</mark>");
+const norm=s=>s.toLowerCase().replace(/[’`´]/g,"'").replace(/l\.l/g,"l·l").replace(/\s+/g," ").trim().replace(/[.!?;:,]+$/,"");
+const loose=s=>norm(s).replace(/[,;:.!?«»"]/g,"").replace(/\s+/g," ").trim();
+const strip=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function seeded(seed){let s=seed;return()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s/4294967296}}
+function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const res=id=>(store.r[id]||(store.r[id]={}));
+const modeOf=id=>(store.mode[id]||(store.mode[id]={rand:false,err:false}));
+
+function buildOrder(){
+  const s=BYID[st.set],m=modeOf(s.id),r=res(s.id);
+  let idx=s.items.map((_,i)=>i);
+  if(m.err)idx=idx.filter(i=>r[i]==="ko"||r[i]==="acc");
+  if(m.rand)idx=shuffle(idx,Math.random);
+  st.order=idx;st.pos=0;st.done=false;
+  if(!m.rand&&!m.err){const first=idx.findIndex(i=>!r[i]);st.pos=first<0?0:first}
+}
+
+/* ============ RENDER ============ */
+const $=id=>document.getElementById(id);
+function renderTotal(){
+  let tot=0,done=0;SETS.forEach(s=>{tot+=s.items.length;done+=Object.keys(res(s.id)).length});
+  $("total").innerHTML=`<b>${done} / ${tot}</b>exercicis fets`;
+}
+function renderNav(){
+  const g=BYID[st.set].g;
+  $("groups").innerHTML=GROUPS.map(x=>`<button class="gbtn" data-g="${x.id}" aria-pressed="${x.id===g}"><span class="n">${x.n}</span>${x.t}</button>`).join("");
+  $("sets").innerHTML=SETS.filter(s=>s.g===g).map(s=>`<button class="sbtn" data-s="${s.id}" aria-pressed="${s.id===st.set}">${s.t}<small>${Object.keys(res(s.id)).length}/${s.items.length}</small></button>`).join("");
+  document.querySelectorAll(".gbtn").forEach(b=>b.onclick=()=>{const first=SETS.find(s=>s.g===b.dataset.g);goSet(first.id)});
+  document.querySelectorAll(".sbtn").forEach(b=>b.onclick=()=>goSet(b.dataset.s));
+}
+function goSet(id){st.set=id;store.cur=id;save();buildOrder();render()}
+function counts(){const r=res(st.set);let ok=0,acc=0,ko=0;Object.values(r).forEach(v=>{if(v==="ok")ok++;else if(v==="acc")acc++;else ko++});return{ok,acc,ko}}
+
+function render(){
+  renderTotal();renderNav();
+  const s=BYID[st.set],m=modeOf(s.id),c=counts(),r=res(s.id);
+  const pct=Math.round(Object.keys(r).length/s.items.length*100);
+  let html=`<div class="bar"><div class="tools">
+    <button class="tbtn" id="tRand" aria-pressed="${m.rand}">Ordre aleatori</button>
+    <button class="tbtn" id="tErr" aria-pressed="${m.err}">Només errades</button>
+    <button class="tbtn" id="tReset">Esborra el progrés</button>
+    <button class="tbtn" id="tTheme">Tema clar / fosc</button></div>
+    <div class="stats"><span class="s-ok"><b>${c.ok}</b>bé</span>${s.k==="input"?`<span class="s-acc"><b>${c.acc}</b>accent</span>`:""}<span class="s-ko"><b>${c.ko}</b>${s.k==="open"?"per repassar":"malament"}</span></div></div>
+    <div class="progress"><i style="width:${pct}%"></i></div>`;
+  if(!st.order.length){
+    html+=`<div class="card"><p class="empty">${m.err?"No tens cap errada en aquesta tanda. Desactiva «Només errades» per continuar practicant.":"No hi ha exercicis."}</p></div>`;
+  }else if(st.done){
+    html+=`<div class="card"><p class="q">Has acabat la tanda de «${s.t}».</p><p>${c.ok} bé${s.k==="input"?`, ${c.acc} amb errades d’accent`:""} i ${c.ko} ${s.k==="open"?"per repassar":"malament"}.</p>
+      <div class="actions"><button class="btn" id="again">Torna a començar</button>${c.ko+c.acc?`<button class="btn ghost" id="onlyErr">Repassa les errades</button>`:""}</div></div>`;
+  }else html+=`<div class="card" id="card"></div>
+    <div class="nav"><button class="btn ghost" id="prev">← Anterior</button><button class="btn ghost" id="skip">Salta →</button></div>`;
+  html+=`<p class="gtitle">${st.order.length} exercicis en aquesta tanda</p><div class="gridnums" id="gridn">${st.order.map((i,p)=>`<button data-p="${p}" class="${r[i]||""}${p===st.pos&&!st.done?" cur":""}" aria-label="Exercici ${i+1}">${i+1}</button>`).join("")}</div>`;
+  $("main").innerHTML=html;
+  $("tRand").onclick=()=>{m.rand=!m.rand;save();buildOrder();render()};
+  $("tErr").onclick=()=>{m.err=!m.err;save();buildOrder();render()};
+  $("tReset").onclick=()=>{if(confirm(`Vols esborrar el progrés de «${s.t}»?`)){store.r[s.id]={};save();buildOrder();render()}};
+  $("tTheme").onclick=toggleTheme;
+  document.querySelectorAll("#gridn button").forEach(b=>b.onclick=()=>{st.pos=+b.dataset.p;st.done=false;render()});
+  if($("again"))$("again").onclick=()=>{buildOrder();st.pos=0;render()};
+  if($("onlyErr"))$("onlyErr").onclick=()=>{m.err=true;save();buildOrder();render()};
+  if($("card"))renderCard();
+}
+
+let answered=false;
+function renderCard(){
+  answered=false;
+  const s=BYID[st.set],i=st.order[st.pos],it=s.items[i],card=$("card");
+  let h=`<div class="meta"><span>${s.t} · ${i+1}</span><span>${st.pos+1} de ${st.order.length}</span></div><p class="instr">${s.ins}</p>`;
+  if(s.k==="mc"){
+    const opts=shuffle(it.opts.map((t,k)=>({t,c:k===0})),seeded(hash(s.id+i)));
+    h+=`<p class="q">${mark(it.q)}</p><div class="opts">${opts.map((o,k)=>`<button class="opt" data-c="${o.c}"><span class="key">${k+1}</span><span>${typo(esc(o.t))}</span></button>`).join("")}</div>`;
+  }else if(s.k==="tf"){
+    h+=`<p class="q">${mark(it.q)}</p><div class="tf"><button class="opt" data-v="true"><span class="key">1</span>Vertader</button><button class="opt" data-v="false"><span class="key">2</span>Fals</button></div>`;
+  }else if(s.k==="input"){
+    const parts=typo(esc(it.q)).split("{}");
+    h+=`<p class="q">${parts.map((p,k)=>p+(k<parts.length-1?`<input class="blank" data-b="${k}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Resposta ${k+1}">`:"")).join("")}</p>
+      <div class="actions"><button class="btn" id="check">Comprova</button><span class="hint">Enter per comprovar i per passar a la següent</span></div>`;
+  }else if(s.k==="fix"){
+    h+=`<p class="wrongsent">${typo(esc(it.q))}</p><textarea id="fixta" spellcheck="false" aria-label="Frase corregida">${esc(it.q)}</textarea>
+      <div class="actions"><button class="btn" id="check">Comprova</button><span class="hint">Enter per comprovar</span></div>`;
+  }else if(s.k==="open"){
+    h+=`<p class="q">${mark(it.q)}</p><textarea id="opta" placeholder="Escriu la teva resposta aquí…" aria-label="La teva resposta"></textarea><div class="wc" id="wc">0 mots</div>
+      <div class="actions"><button class="btn" id="reveal">Mostra la resposta model</button><span class="hint">Ctrl + Enter</span></div>`;
+  }
+  h+=`<div id="fbox"></div>`;
+  card.innerHTML=h;
+  $("prev").onclick=()=>{if(st.pos>0){st.pos--;render()}};
+  $("skip").onclick=next;
+  if(s.k==="mc"||s.k==="tf"){
+    card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pickChoice(b));
+  }else if(s.k==="input"){
+    const ins=card.querySelectorAll("input.blank");ins[0].focus();
+    $("check").onclick=checkInput;
+  }else if(s.k==="fix"){
+    const ta=$("fixta");ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);
+    $("check").onclick=checkFix;
+  }else if(s.k==="open"){
+    const ta=$("opta");ta.focus();
+    ta.oninput=()=>{const n=ta.value.trim()?ta.value.trim().split(/\s+/).length:0;$("wc").textContent=`${n} mots`};
+    $("reveal").onclick=revealOpen;
+  }
+}
+function record(v){const s=BYID[st.set],i=st.order[st.pos];res(s.id)[i]=v;save();answered=true;renderTotal();renderNav();
+  const gb=document.querySelector(`#gridn button[data-p="${st.pos}"]`);if(gb)gb.className=v+" cur";
+  const c=counts(),stt=document.querySelector(".stats");if(stt){const sp=stt.querySelectorAll("b");sp[0].textContent=c.ok;if(sp.length===3){sp[1].textContent=c.acc;sp[2].textContent=c.ko}else sp[1].textContent=c.ko}
+  const r=res(s.id);document.querySelector(".progress i").style.width=Math.round(Object.keys(r).length/s.items.length*100)+"%";
+}
+function fb(cls,title,body,extra=""){ $("fbox").innerHTML=`<div class="fb ${cls}"><strong>${title}</strong>${body?`<div class="model">${body}</div>`:""}</div><div class="actions">${extra}<button class="btn" id="nextb">Següent →</button></div>`;
+  $("nextb").onclick=next; }
+function pickChoice(b){
+  if(answered)return;
+  const s=BYID[st.set],it=s.items[st.order[st.pos]],btns=[...$("card").querySelectorAll(".opt")];
+  let ok;
+  if(s.k==="mc"){ok=b.dataset.c==="true";btns.forEach(x=>{x.disabled=true;if(x.dataset.c==="true")x.classList.add("right")})}
+  else{ok=(b.dataset.v==="true")===it.a;btns.forEach(x=>{x.disabled=true;if((x.dataset.v==="true")===it.a)x.classList.add("right")})}
+  if(!ok)b.classList.add("wrong");
+  record(ok?"ok":"ko");
+  const ex=it.ex?typo(esc(it.ex)):"";
+  fb(ok?"ok":"ko",ok?"Correcte.":(s.k==="tf"?`És ${it.a?"vertader":"fals"}.`:"Incorrecte."),ex);
+  $("nextb").focus();
+}
+function checkInput(){
+  if(answered){next();return}
+  const s=BYID[st.set],it=s.items[st.order[st.pos]],ins=[...$("card").querySelectorAll("input.blank")];
+  let worst="ok";const rank={ok:0,acc:1,ko:2};
+  ins.forEach((inp,k)=>{
+    const v=norm(inp.value),vs=strip(v),acc=it.ans[k]||[];
+    let r="ko";
+    if(acc.some(a=>norm(a)===v))r="ok";else if(v&&acc.some(a=>strip(norm(a))===vs))r="acc";
+    inp.classList.add(r);inp.readOnly=true;if(rank[r]>rank[worst])worst=r;
+  });
+  record(worst);
+  const sol=it.ans.map(a=>a.join(" / ")).join("  ·  ");
+  const title=worst==="ok"?"Correcte.":worst==="acc"?"Gairebé: revisa els accents o la ç.":"Incorrecte.";
+  fb(worst,title,`Solució: <b>${typo(esc(sol))}</b>${it.ex?`<br>${typo(esc(it.ex))}`:""}`,worst!=="ok"?`<button class="btn ghost" id="override">Ho tenia bé</button>`:"");
+  if($("override"))$("override").onclick=()=>{record("ok");$("override").remove();$("nextb").focus()};
+  $("nextb").focus();
+}
+function checkFix(){
+  if(answered){next();return}
+  const it=BYID[st.set].items[st.order[st.pos]],ta=$("fixta"),v=loose(ta.value);
+  let r="ko";
+  if(it.ans.some(a=>loose(a)===v))r="ok";else if(it.ans.some(a=>strip(loose(a))===strip(v)))r="acc";
+  ta.readOnly=true;record(r);
+  fb(r,r==="ok"?"Correcte.":r==="acc"?"Gairebé: revisa els accents.":"Compara-la amb la solució.",`${it.ans.map(a=>`<b>${typo(esc(a))}</b>`).join("<br>")}<br>${typo(esc(it.ex))}`,r!=="ok"?`<button class="btn ghost" id="override">Ho tenia bé</button>`:"");
+  if($("override"))$("override").onclick=()=>{record("ok");$("override").remove();$("nextb").focus()};
+  $("nextb").focus();
+}
+function revealOpen(){
+  const it=BYID[st.set].items[st.order[st.pos]];
+  $("reveal").disabled=true;
+  $("fbox").innerHTML=`<div class="fb"><strong>Resposta model</strong><div class="model">${typo(esc(it.m))}</div></div>
+    <div class="actions"><span class="hint">Com t’ha sortit?</span><button class="btn good" id="selfok">M’ha sortit bé</button><button class="btn bad" id="selfko">Per repassar</button><button class="btn ghost" id="nextb">Salta →</button></div>`;
+  $("selfok").onclick=()=>{record("ok");next()};
+  $("selfko").onclick=()=>{record("ko");next()};
+  $("nextb").onclick=next;
+}
+function next(){if(st.pos<st.order.length-1){st.pos++;render()}else{st.done=true;render()}}
+
+document.addEventListener("keydown",e=>{
+  const s=BYID[st.set];if(!$("card"))return;
+  const tag=(document.activeElement||{}).tagName;
+  if(s.k==="open"){if(e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();if(!$("reveal").disabled)revealOpen()}return}
+  if(e.key==="Enter"){
+    if(tag==="BUTTON"&&!answered)return;
+    e.preventDefault();
+    if(answered){next();return}
+    if(s.k==="input")checkInput();else if(s.k==="fix")checkFix();
+    return;
+  }
+  if((s.k==="mc"||s.k==="tf")&&!answered&&/^[1-4]$/.test(e.key)&&tag!=="INPUT"&&tag!=="TEXTAREA"){
+    const b=$("card").querySelectorAll(".opt")[+e.key-1];if(b)pickChoice(b);
+  }
+});
+
+function toggleTheme(){
+  const root=document.documentElement;
+  const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme=dark?"light":"dark";try{localStorage.setItem(KEY+"-theme",root.dataset.theme)}catch(e){}
+}
+try{const t=localStorage.getItem(KEY+"-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}
+
+buildOrder();render();
+</script>
+</body>
+</html>
